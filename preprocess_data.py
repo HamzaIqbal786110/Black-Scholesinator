@@ -25,16 +25,14 @@ float_cols = [
     "UNDERLYING_LAST", "DTE", "C_BID", "C_ASK", "P_BID", "P_ASK", "STRIKE"
 ]
 
-# Iterate over each asset folder
+# Process each asset separately
 for asset in os.listdir(input_dir):
     asset_path = os.path.join(input_dir, asset)
     if not os.path.isdir(asset_path):
         continue
 
-    # Aggregate data for the asset
-    asset_data = []
+    asset_data = []  # Store all data for this asset
 
-    # Process each file in the asset folder
     for file in os.listdir(asset_path):
         file_path = os.path.join(asset_path, file)
         if not file.endswith(".txt"):
@@ -52,7 +50,7 @@ for asset in os.listdir(input_dir):
 
         # Convert relevant columns to float
         for col in float_cols:
-            df[col] = pd.to_numeric(df[col], errors="coerce")  # Convert and handle invalid values
+            df[col] = pd.to_numeric(df[col], errors="coerce")
 
         # Compute mid-prices
         df["C_MID_PRICE"] = (df["C_BID"] + df["C_ASK"]) / 2
@@ -88,9 +86,14 @@ for asset in os.listdir(input_dir):
         # Append processed data
         asset_data.append(df)
 
-    # Save the aggregated file if data exists
+    # Save aggregated file **per asset**
     if asset_data:
         result_df = pd.concat(asset_data, ignore_index=True)
+        
+        # Sort by timestamp to ensure chronological order
+        result_df = result_df.sort_values(by="QUOTE_UNIXTIME").reset_index(drop=True)
+
+        # Save per asset
         output_file = os.path.join(output_dir, f"{asset}_data.csv")
         result_df.to_csv(output_file, index=False)
         print(f"Saved: {output_file}")
