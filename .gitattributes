@@ -1,0 +1,5 @@
+Data/*.csv filter=lfs diff=lfs merge=lfs -text
+Data/nvda_data.csv filter=lfs diff=lfs merge=lfs -text
+Data/spy_data.csv filter=lfs diff=lfs merge=lfs -text
+Data/tsla_data.csv filter=lfs diff=lfs merge=lfs -text
+Data/vix_data.csv filter=lfs diff=lfs merge=lfs -text
