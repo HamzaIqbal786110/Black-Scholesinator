@@ -22,7 +22,9 @@ columns = [
 
 # Columns to convert to float
 float_cols = [
-    "UNDERLYING_LAST", "DTE", "C_BID", "C_ASK", "P_BID", "P_ASK", "STRIKE"
+    "UNDERLYING_LAST", "DTE", "C_BID", "C_ASK", "P_BID", "P_ASK", "STRIKE",
+    "C_DELTA", "C_GAMMA", "C_VEGA", "C_THETA", "C_RHO", "C_IV", "C_VOLUME", "C_LAST",
+    "P_DELTA", "P_GAMMA", "P_VEGA", "P_THETA", "P_RHO", "P_IV", "P_VOLUME"
 ]
 
 # Process each asset separately
@@ -48,9 +50,10 @@ for asset in os.listdir(input_dir):
 
         df.columns = columns  # Assign corrected column names
 
-        # Convert relevant columns to float
+        # Strip spaces and convert to float
+        df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
         for col in float_cols:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
+            df[col] = pd.to_numeric(df[col], errors="coerce").astype(float)
 
         # Compute mid-prices
         df["C_MID_PRICE"] = (df["C_BID"] + df["C_ASK"]) / 2
@@ -83,7 +86,6 @@ for asset in os.listdir(input_dir):
             "RISK_FREE_RATE"
         ]]
 
-        # Append processed data
         asset_data.append(df)
 
     # Save aggregated file **per asset**
@@ -93,9 +95,13 @@ for asset in os.listdir(input_dir):
         # Sort by timestamp to ensure chronological order
         result_df = result_df.sort_values(by="QUOTE_UNIXTIME").reset_index(drop=True)
 
+        # Ensure all numerical values are stored as floats
+        for col in result_df.columns:
+            result_df[col] = pd.to_numeric(result_df[col], errors="coerce").astype(float)
+
         # Save per asset
         output_file = os.path.join(output_dir, f"{asset}_data.csv")
-        result_df.to_csv(output_file, index=False)
+        result_df.to_csv(output_file, index=False, float_format='%.6f')
         print(f"Saved: {output_file}")
 
 print("Processing complete.")
