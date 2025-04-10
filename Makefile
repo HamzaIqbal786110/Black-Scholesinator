@@ -1,13 +1,31 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -std=c11 -lm
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11 -Iinclude
+LDFLAGS = -lm
 
-all: black_scholes_base monte_carlo_base
+# Binary output directory
+BIN_DIR = bin
 
-black_scholes_base: black_scholes_base.c parser.c
-	$(CC) black_scholes_base.c parser.c -o black_scholes_base $(CFLAGS)
+# Source files
+COMMON_SRC = src/common/parser.c
+BS_BASE_SRC = src/black_sholes/black_scholes_base.c
+MC_BASE_SRC = src/monte_carlo/monte_carlo_base.c
 
-monte_carlo_base: monte_carlo_base.c parser.c
-	$(CC) monte_carlo_base.c parser.c -o monte_carlo_base $(CFLAGS)
+# Binaries
+BS_BASE_BIN = $(BIN_DIR)/black_scholes_base
+MC_BASE_BIN = $(BIN_DIR)/monte_carlo_base
 
+# Default target
+all: $(BS_BASE_BIN) $(MC_BASE_BIN)
+
+# Black-Scholes base build
+$(BS_BASE_BIN): $(BS_BASE_SRC) $(COMMON_SRC)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+# Monte Carlo base build
+$(MC_BASE_BIN): $(MC_BASE_SRC) $(COMMON_SRC)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+# Clean build outputs
 clean:
-	rm -f black_scholes_base monte_carlo_base
+	rm -f $(BIN_DIR)/*

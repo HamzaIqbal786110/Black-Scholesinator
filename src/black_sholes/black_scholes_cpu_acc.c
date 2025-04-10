@@ -1,0 +1,142 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "parser.h"
+
+
+int main() {
+    int count = 0;
+    option_spread *options = read_csv("Data/nvda_data_filtered.csv", &count);
+
+    // Print entries read from file
+    for (int i = 0; i < count; i++) {
+    printf("Entry %d:\n"
+           "  Underlying: %.2f, Strike: %.2f, DTE: %.2f\n"
+           "  Call - IV: %.6f, Mid: %.6f\n"
+           "  Put  - IV: %.6f, Mid: %.6f\n"
+           "  Risk-Free Rate: %.6f\n\n",
+           i,
+           options[i].underlying, options[i].strike, options[i].dte,
+           options[i].c_iv, options[i].c_mid,
+           options[i].p_iv, options[i].p_mid,
+           options[i].rfr);
+}
+
+
+    // Allocate memory for model price outputs
+    double *call_prices = malloc(sizeof(double) * count);
+    double *put_prices  = malloc(sizeof(double) * count);
+
+    // FDM grid configuration
+    int p_steps = 200;
+    int t_steps = 100000;
+
+    double **c_vals = calloc(p_steps + 1, sizeof(double*));
+    double **p_vals = calloc(p_steps + 1, sizeof(double*));
+    double *c_a = calloc(p_steps + 1, sizeof(double));
+    double *c_b = calloc(p_steps + 1, sizeof(double));
+    double *c_c = calloc(p_steps + 1, sizeof(double));
+    double *p_a = calloc(p_steps + 1, sizeof(double));
+    double *p_b = calloc(p_steps + 1, sizeof(double));
+    double *p_c = calloc(p_steps + 1, sizeof(double));
+
+    for (int j = 0; j <= p_steps; j++) {
+        c_vals[j] = calloc(t_steps + 1, sizeof(double));
+        p_vals[j] = calloc(t_steps + 1, sizeof(double));
+    }
+
+    // Loop over all options and run finite difference method (explicit scheme)
+    for (int opt = 0; opt < count; opt++) 
+    {
+        double stock = options[opt].underlying;
+        double k     = options[opt].strike;
+        double c_sig = options[opt].c_iv;
+        double p_sig = options[opt].p_iv;
+        double r     = options[opt].rfr;
+        double t     = options[opt].dte / 365.0;
+
+        double s_min = 0.5 * stock;
+        double s_max = 3.0 * stock;
+        double ds    = (s_max - s_min) / p_steps;
+        double dt    = t / t_steps;
+
+        printf("\n=== Option %d ===\n", opt);
+        printf("Stock: %.2f, Strike: %.2f, c_iv: %.6f, p_iv: %.6f, r: %.6f, T: %.6f\n", stock, k, c_sig, p_sig, r, t);
+        printf("s_min: %.2f, s_max: %.2f, ds: %.6f, dt: %.6f\n", s_min, s_max, ds, dt);
+
+        // Terminal condition and coefficient setup
+        for (int i = 0; i <= p_steps; i++) 
+        {
+            double s = s_min + i * ds;
+            c_vals[i][t_steps] = fmax(s - k, 0.0);
+            p_vals[i][t_steps] = fmax(k - s, 0.0);
+            
+            if (i > 0 && i < p_steps) 
+            {
+                double c_gamma = c_sig * c_sig * s * s;
+                double p_gamma = p_sig * p_sig * s * s;
+                double drift   = r * s;
+
+                c_a[i] = 0.5 * dt * (c_gamma - drift) / (ds * ds);
+                c_b[i] = 1.0 - dt * (c_gamma / (ds * ds) + r);
+                c_c[i] = 0.5 * dt * (c_gamma + drift) / (ds * ds);
+
+                p_a[i] = 0.5 * dt * (p_gamma - drift) / (ds * ds);
+                p_b[i] = 1.0 - dt * (p_gamma / (ds * ds) + r);
+                p_c[i] = 0.5 * dt * (p_gamma + drift) / (ds * ds);
+
+            }
+        }
+
+        // Boundary conditions
+        for (int j = 0; j <= t_steps; j++) 
+        {
+            double T = j * dt;
+            // Call option boundaries
+            c_vals[0][j] = 0.0;
+            c_vals[p_steps][j] = s_max - k * exp(-r * (t - T));
+            // Put option boundaries
+            p_vals[0][j] = k * exp(-r * (t - T));
+            p_vals[p_steps][j] = 0.0;
+        }
+
+        // Backward time stepping
+        for (int j = t_steps - 1; j >= 0; j--) {
+            for (int i = 1; i < p_steps; i++) {
+                c_vals[i][j] = c_a[i] * c_vals[i-1][j+1] + c_b[i] * c_vals[i][j+1] + c_c[i] * c_vals[i+1][j+1];
+                p_vals[i][j] = p_a[i] * p_vals[i-1][j+1] + p_b[i] * p_vals[i][j+1] + p_c[i] * p_vals[i+1][j+1];
+            }
+        }
+
+        // Interpolate price at current stock price
+        int s0_ind = (int)((stock - s_min) / ds);
+        printf("s0_ind = %d, c_val = %.6f, p_val = %.6f\n", s0_ind, c_vals[s0_ind][0], p_vals[s0_ind][0]);
+
+        call_prices[opt] = c_vals[s0_ind][0];
+        put_prices[opt]  = p_vals[s0_ind][0];
+    }
+
+    // Display results
+    printf("\n%-6s | %-10s | %-10s | %-10s | %-10s\n", "Index", "Call Model", "Call Actual", "Put Model", "Put Actual");
+    printf("--------------------------------------------------------------\n");
+
+    for (int i = 0; i < count; i++) {
+        printf("%-6d | %-10.4f | %-10.4f | %-10.4f | %-10.4f\n",
+               i, call_prices[i], options[i].c_mid, put_prices[i], options[i].p_mid);
+    }
+
+    // Free allocated memory
+    for (int j = 0; j <= p_steps; j++) {
+        free(c_vals[j]);
+        free(p_vals[j]);
+    }
+
+    free(c_vals); free(p_vals);
+    free(c_a); free(c_b); free(c_c);
+    free(p_a); free(p_b); free(p_c);
+    free(call_prices); free(put_prices);
+    free(options);
+
+    return 0;
+}

@@ -11,7 +11,7 @@ double gaussian_random()
 {
     double u1 = ((double) rand() + 1.0) / ((double) RAND_MAX + 2.0); // avoid log(0)
     double u2 = ((double) rand() + 1.0) / ((double) RAND_MAX + 2.0);
-    return sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
+    return sqrt(-2.0 * log(u1)) * cos(2.0 * acos(-1.0) * u2);
 }
 
 double *monte_carlo_pricer(option_spread option)
