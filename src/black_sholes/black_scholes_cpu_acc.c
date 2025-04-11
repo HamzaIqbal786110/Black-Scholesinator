@@ -18,7 +18,8 @@ double CLOCK()
 }
 
 // Struct that is used to help with data localization in individual option grids
-typedef struct {
+typedef struct 
+{
     double *c_vals;
     double *p_vals;
     double *c_a;
@@ -62,7 +63,6 @@ int main()
     #pragma omp parallel for num_threads(threads)
     for (int opt = 0; opt < count; opt++) 
     {
-        printf("Num threads =  %i\n", omp_get_num_threads());
         double stock = options[opt].underlying;
         double k     = options[opt].strike;
         double c_sig = options[opt].c_iv;
@@ -145,6 +145,8 @@ int main()
     total = end - start;
 
     // Display results
+    printf("\n CPU ACCELERATED IMPLEMENTATION\n");
+    printf("--------------------------------------------------------------\n");
     printf("\n%-6s | %-10s | %-10s | %-10s | %-10s\n", "Index", "Call Model", "Call Actual", "Put Model", "Put Actual");
     printf("--------------------------------------------------------------\n");
     for (int i = 0; i < count; i++) 

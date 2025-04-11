@@ -109,6 +109,8 @@ int main()
     end = CLOCK();
 
     // Display results
+    printf("\nBASIC IMPLEMENTATION\n");
+    printf("--------------------------------------------------------------\n");
     printf("\n%-6s | %-10s | %-10s | %-10s | %-10s\n", "Index", "Call Model", "Call Actual", "Put Model", "Put Actual");
     printf("--------------------------------------------------------------\n");
 

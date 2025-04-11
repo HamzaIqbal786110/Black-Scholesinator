@@ -1,0 +1,4 @@
+Running benchmarks...
+Benchmarking: bin/black_scholes_base
+Benchmarking: bin/black_scholes_cpu_acc
+Benchmarking: bin/black_scholes_gpu
