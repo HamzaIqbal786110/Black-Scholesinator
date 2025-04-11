@@ -23,7 +23,6 @@ int main() {
            options[i].rfr);
 }
 
-
     // Allocate memory for model price outputs
     double *call_prices = malloc(sizeof(double) * count);
     double *put_prices  = malloc(sizeof(double) * count);
