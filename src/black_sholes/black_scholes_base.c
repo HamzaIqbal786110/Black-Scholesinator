@@ -1,13 +1,24 @@
+#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 #include "parser.h"
 
+double CLOCK() 
+{
+    struct timespec t;
+    clock_gettime(CLOCK_MONOTONIC, &t);
+    return (t.tv_sec * 1000)+(t.tv_nsec*1e-6);
+}
 
-int main() {
+int main() 
+{
+    double start, end, total;
     int count = 0;
     option_spread *options = read_csv("Data/nvda_data_filtered.csv", &count);
+
 
     // Print entries read from file
     for (int i = 0; i < count; i++) {
@@ -22,6 +33,7 @@ int main() {
            options[i].p_iv, options[i].p_mid,
            options[i].rfr);
 }
+
 
     // Allocate memory for model price outputs
     double *call_prices = malloc(sizeof(double) * count);
@@ -45,6 +57,7 @@ int main() {
         p_vals[j] = calloc(t_steps + 1, sizeof(double));
     }
 
+    start = CLOCK();
     // Loop over all options and run finite difference method (explicit scheme)
     for (int opt = 0; opt < count; opt++) 
     {
@@ -59,10 +72,6 @@ int main() {
         double s_max = 3.0 * stock;
         double ds    = (s_max - s_min) / p_steps;
         double dt    = t / t_steps;
-
-        printf("\n=== Option %d ===\n", opt);
-        printf("Stock: %.2f, Strike: %.2f, c_iv: %.6f, p_iv: %.6f, r: %.6f, T: %.6f\n", stock, k, c_sig, p_sig, r, t);
-        printf("s_min: %.2f, s_max: %.2f, ds: %.6f, dt: %.6f\n", s_min, s_max, ds, dt);
 
         // Terminal condition and coefficient setup
         for (int i = 0; i <= p_steps; i++) 
@@ -110,13 +119,14 @@ int main() {
 
         // Interpolate price at current stock price
         int s0_ind = (int)((stock - s_min) / ds);
-        printf("s0_ind = %d, c_val = %.6f, p_val = %.6f\n", s0_ind, c_vals[s0_ind][0], p_vals[s0_ind][0]);
-
         call_prices[opt] = c_vals[s0_ind][0];
         put_prices[opt]  = p_vals[s0_ind][0];
     }
+    end = CLOCK();
 
     // Display results
+    printf("\nBASIC IMPLEMENTATION\n");
+    printf("--------------------------------------------------------------\n");
     printf("\n%-6s | %-10s | %-10s | %-10s | %-10s\n", "Index", "Call Model", "Call Actual", "Put Model", "Put Actual");
     printf("--------------------------------------------------------------\n");
 
@@ -125,6 +135,8 @@ int main() {
                i, call_prices[i], options[i].c_mid, put_prices[i], options[i].p_mid);
     }
 
+    total = end - start;
+    printf("\nTIME TAKEN = %.5f ms\n", total);
     // Free allocated memory
     for (int j = 0; j <= p_steps; j++) {
         free(c_vals[j]);
