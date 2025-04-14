@@ -1,7 +1,1 @@
 =====================
-bin/black_scholes_base average time: FAILED
-
-bin/black_scholes_cpu_acc average time: FAILED
-
-bin/black_scholes_gpu average time: FAILED
-

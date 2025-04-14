@@ -7,7 +7,7 @@
 #include <cuda_runtime.h>
 #include "parser.h"
 
-#define IDX(i, j, p_steps) ((j) * ((p_steps) + 1) + (i))
+#define IDX(i, j, price_steps) ((j) * ((price_steps) + 1) + (i))
 
 double CLOCK() 
 {
@@ -21,23 +21,23 @@ __global__ void fdm_kernel(
     double *c_vals, double *p_vals,
     const double *c_a, const double *c_b, const double *c_c,
     const double *p_a, const double *p_b, const double *p_c,
-    int p_steps, int t_steps, int count)
+    int price_steps, int time_steps, int count)
 {
     int opt_id = blockIdx.x;
     int i = threadIdx.x + 1;
 
-    if (opt_id >= count || i >= p_steps) return;
+    if (opt_id >= count || i >= price_steps) return;
 
-    size_t grid_size = (p_steps + 1) * (t_steps + 1);
-    size_t coef_offset = opt_id * (p_steps + 1);
+    size_t grid_size = (price_steps + 1) * (time_steps + 1);
+    size_t coef_offset = opt_id * (price_steps + 1);
     size_t offset = opt_id * grid_size;
 
-    for (int j = t_steps - 1; j >= 0; j--) 
+    for (int j = time_steps - 1; j >= 0; j--) 
     {
-        size_t idx   = offset + IDX(i, j, p_steps);
-        size_t idx_l = offset + IDX(i - 1, j + 1, p_steps);
-        size_t idx_c = offset + IDX(i,     j + 1, p_steps);
-        size_t idx_r = offset + IDX(i + 1, j + 1, p_steps);
+        size_t idx   = offset + IDX(i, j, price_steps);
+        size_t idx_l = offset + IDX(i - 1, j + 1, price_steps);
+        size_t idx_c = offset + IDX(i,     j + 1, price_steps);
+        size_t idx_r = offset + IDX(i + 1, j + 1, price_steps);
 
         c_vals[idx] =
             c_a[coef_offset + i] * c_vals[idx_l] +
@@ -48,7 +48,115 @@ __global__ void fdm_kernel(
             p_a[coef_offset + i] * p_vals[idx_l] +
             p_b[coef_offset + i] * p_vals[idx_c] +
             p_c[coef_offset + i] * p_vals[idx_r];
+        // if (opt_id == 2 && i == 40)
+        // {
+        //     printf("[FDM-BEGIN] opt=%d i=%d j=%d idx=%lu idx_l=%lu idx_c=%lu idx_r=%lu\n",
+        //         opt_id, i, j, idx, idx_l, idx_c, idx_r);
+        
+        //     printf("[FDM-VALS] j=%d c_l=%.5f c_c=%.5f c_r=%.5f\n",
+        //         j, c_vals[idx_l], c_vals[idx_c], c_vals[idx_r]);
+        
+        //     printf("[FDM-COEF] a=%.6f b=%.6f c=%.6f\n",
+        //         c_a[coef_offset + i], c_b[coef_offset + i], c_c[coef_offset + i]);
+        
+        //     printf("[FDM-OUT] j=%d call=%.6f put=%.6f\n",
+        //         j, c_vals[idx], p_vals[idx]);
+        // }
     }
+}
+
+__global__ void setup_kernel(
+    double *call_vals, double *put_vals,
+    double *c_a, double *c_b, double *c_c,
+    double *p_a, double *p_b, double *p_c,
+    const option_spread *opts,
+    int price_steps, int time_steps)
+{
+    int opt = blockIdx.x;
+    int i = threadIdx.x;
+
+    if (i > price_steps) return;
+
+    option_spread o = opts[opt];
+
+    double s0 = o.underlying;
+    double k = o.strike;
+    double r = o.rfr;
+    double sigma_c = o.c_iv;
+    double sigma_p = o.p_iv;
+    double T = o.dte / 365.0;
+
+    double ds = (3.0 * s0 - 0.5 * s0) / price_steps;
+    double dt = T / time_steps;
+    double s_min = 0.5 * s0;
+
+    double s = s_min + i * ds;
+
+    size_t grid_size = (price_steps + 1) * (time_steps + 1);
+    size_t offset = opt * grid_size;
+    size_t coef_offset = opt * (price_steps + 1);
+
+    // terminal payoff at t = T
+    call_vals[offset + IDX(i, time_steps, price_steps)] = fmax(s - k, 0.0);
+    put_vals[offset + IDX(i, time_steps, price_steps)]  = fmax(k - s, 0.0);
+
+    // coefficients (skip i=0 and i=price_steps)
+    if (i > 0 && i < price_steps)
+    {
+        double gamma_c = sigma_c * sigma_c * s * s;
+        double gamma_p = sigma_p * sigma_p * s * s;
+        double drift = r * s;
+
+        c_a[coef_offset + i] = 0.5 * dt * (gamma_c - drift) / (ds * ds);
+        c_b[coef_offset + i] = 1.0 - dt * (gamma_c / (ds * ds) + r);
+        c_c[coef_offset + i] = 0.5 * dt * (gamma_c + drift) / (ds * ds);
+
+        p_a[coef_offset + i] = 0.5 * dt * (gamma_p - drift) / (ds * ds);
+        p_b[coef_offset + i] = 1.0 - dt * (gamma_p / (ds * ds) + r);
+        p_c[coef_offset + i] = 0.5 * dt * (gamma_p + drift) / (ds * ds);
+    }
+    if (opt == 2 && (i == 40 || i == 100))
+    {
+        printf("[SETUP] opt=%d i=%d s=%.4f ds=%.4f s_min=%.4f k=%.4f\n", opt, i, s, ds, s_min, k);
+    }
+}
+
+__global__ void boundaries_kernel(
+    double *call_vals, double *put_vals,
+    const option_spread *opts,
+    int price_steps, int time_steps)
+{
+    int opt = blockIdx.x;                              // option index
+    int j = threadIdx.x + blockIdx.y * blockDim.x;     // time step index
+
+    if (j > time_steps) return;
+
+    option_spread o = opts[opt];
+    double s0 = o.underlying;
+    double k = o.strike;
+    double r = o.rfr;
+    double T = o.dte / 365.0;
+    double dt = T / time_steps;
+    double T_j = j * dt;
+
+    size_t grid_size = (price_steps + 1) * (time_steps + 1);
+    size_t offset = opt * grid_size;
+
+    call_vals[offset + IDX(0, j, price_steps)] = 0.0;
+    put_vals[offset + IDX(0, j, price_steps)] = k * exp(-r * (T - T_j));
+
+    call_vals[offset + IDX(price_steps, j, price_steps)] = (3.0 * s0) - k * exp(-r * (T - T_j));
+    put_vals[offset + IDX(price_steps, j, price_steps)] = 0.0;
+
+    // if (opt == 2 && (j == 0 || j == time_steps))
+    // {
+    //     printf("[BOUNDARIES] opt=%d j=%d call_L=%.4f put_L=%.4f call_R=%.4f put_R=%.4f\n",
+    //         opt, j,
+    //         call_vals[offset + IDX(0, j, price_steps)],
+    //         put_vals[offset + IDX(0, j, price_steps)],
+    //         call_vals[offset + IDX(price_steps, j, price_steps)],
+    //         put_vals[offset + IDX(price_steps, j, price_steps)]);
+    // }
 }
 
 int main() 
@@ -56,107 +164,77 @@ int main()
     int count = 0;
     option_spread *options_host = read_csv("Data/nvda_data_filtered.csv", &count);
 
-    const int p_steps = 200;
-    const int t_steps = 100000;
-    size_t grid_size = (p_steps + 1) * (t_steps + 1);
-    size_t grid_bytes = sizeof(double) * grid_size;
-
-    double *call_vals_host = (double *)calloc(grid_size * count, sizeof(double));
-    double *put_vals_host  = (double *)calloc(grid_size * count, sizeof(double));
+    const int price_steps = 200;
+    const int time_steps = 100000;
     double *call_prices_host = (double *)malloc(sizeof(double) * count);
     double *put_prices_host  = (double *)malloc(sizeof(double) * count);
 
-    double *c_a = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-    double *c_b = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-    double *c_c = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-    double *p_a = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-    double *p_b = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-    double *p_c = (double *)malloc(sizeof(double) * (p_steps + 1) * count);
-
     double start = CLOCK();
-    for (int opt = 0; opt < count; opt++) 
-    {
-        double s0 = options_host[opt].underlying;
-        double k = options_host[opt].strike;
-        double r = options_host[opt].rfr;
-        double sigma_c = options_host[opt].c_iv;
-        double sigma_p = options_host[opt].p_iv;
-        double T = options_host[opt].dte / 365.0;
-        double ds = (3.0 * s0 - 0.5 * s0) / p_steps;
-        double dt = T / t_steps;
-        double s_min = 0.5 * s0;
-        size_t offset = opt * grid_size;
-        size_t coef_offset = opt * (p_steps + 1);
 
-        for (int i = 0; i <= p_steps; i++) 
-        {
-            double s = s_min + i * ds;
-            call_vals_host[offset + IDX(i, t_steps, p_steps)] = fmax(s - k, 0.0);
-            put_vals_host[offset + IDX(i, t_steps, p_steps)]  = fmax(k - s, 0.0);
+    // === Device memory ===
+    option_spread *options_gpu;
+    double *call_vals_gpu, *put_vals_gpu;
+    double *c_a_gpu, *c_b_gpu, *c_c_gpu;
+    double *p_a_gpu, *p_b_gpu, *p_c_gpu;
 
-            if (i > 0 && i < p_steps) 
-            {
-                double gamma_c = sigma_c * sigma_c * s * s;
-                double gamma_p = sigma_p * sigma_p * s * s;
-                double drift = r * s;
+    // Allocate options and upload
+    cudaMalloc(&options_gpu, sizeof(option_spread) * count);
+    cudaMemcpy(options_gpu, options_host, sizeof(option_spread) * count, cudaMemcpyHostToDevice);
 
-                c_a[coef_offset + i] = 0.5 * dt * (gamma_c - drift) / (ds * ds);
-                c_b[coef_offset + i] = 1.0 - dt * (gamma_c / (ds * ds) + r);
-                c_c[coef_offset + i] = 0.5 * dt * (gamma_c + drift) / (ds * ds);
+    size_t grid_size = (price_steps + 1) * (time_steps + 1);
+    size_t coeff_len = price_steps + 1;
 
-                p_a[coef_offset + i] = 0.5 * dt * (gamma_p - drift) / (ds * ds);
-                p_b[coef_offset + i] = 1.0 - dt * (gamma_p / (ds * ds) + r);
-                p_c[coef_offset + i] = 0.5 * dt * (gamma_p + drift) / (ds * ds);
-            }
-        }
+    cudaMalloc(&call_vals_gpu, sizeof(double) * grid_size * count);
+    cudaMalloc(&put_vals_gpu,  sizeof(double) * grid_size * count);
+    cudaMemset(call_vals_gpu, 0, sizeof(double) * grid_size * count);
+    cudaMemset(put_vals_gpu,  0, sizeof(double) * grid_size * count);
 
-        for (int j = 0; j <= t_steps; j++) 
-        {
-            double T_j = j * dt;
-            call_vals_host[offset + IDX(0, j, p_steps)] = 0.0;
-            call_vals_host[offset + IDX(p_steps, j, p_steps)] = (3.0 * s0) - k * exp(-r * (T - T_j));
-            put_vals_host[offset + IDX(0, j, p_steps)] = k * exp(-r * (T - T_j));
-            put_vals_host[offset + IDX(p_steps, j, p_steps)] = 0.0;
-        }
-    }
 
-    // Device memory
-    double *call_vals_dev, *put_vals_dev;
-    double *c_a_dev, *c_b_dev, *c_c_dev;
-    double *p_a_dev, *p_b_dev, *p_c_dev;
+    cudaMalloc(&c_a_gpu, sizeof(double) * coeff_len * count);
+    cudaMalloc(&c_b_gpu, sizeof(double) * coeff_len * count);
+    cudaMalloc(&c_c_gpu, sizeof(double) * coeff_len * count);
+    cudaMalloc(&p_a_gpu, sizeof(double) * coeff_len * count);
+    cudaMalloc(&p_b_gpu, sizeof(double) * coeff_len * count);
+    cudaMalloc(&p_c_gpu, sizeof(double) * coeff_len * count);
 
-    cudaMalloc(&call_vals_dev, grid_bytes * count);
-    cudaMalloc(&put_vals_dev,  grid_bytes * count);
-    cudaMalloc(&c_a_dev, sizeof(double) * (p_steps + 1) * count);
-    cudaMalloc(&c_b_dev, sizeof(double) * (p_steps + 1) * count);
-    cudaMalloc(&c_c_dev, sizeof(double) * (p_steps + 1) * count);
-    cudaMalloc(&p_a_dev, sizeof(double) * (p_steps + 1) * count);
-    cudaMalloc(&p_b_dev, sizeof(double) * (p_steps + 1) * count);
-    cudaMalloc(&p_c_dev, sizeof(double) * (p_steps + 1) * count);
-
-    cudaMemcpy(call_vals_dev, call_vals_host, grid_bytes * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(put_vals_dev,  put_vals_host,  grid_bytes * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(c_a_dev, c_a, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(c_b_dev, c_b, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(c_c_dev, c_c, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(p_a_dev, p_a, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(p_b_dev, p_b, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-    cudaMemcpy(p_c_dev, p_c, sizeof(double) * (p_steps + 1) * count, cudaMemcpyHostToDevice);
-
-    // Launch kernel
+    // Launch setup kernel
     dim3 gridDim(count);
-    dim3 blockDim(p_steps);
-    fdm_kernel<<<gridDim, blockDim>>>(call_vals_dev, put_vals_dev, c_a_dev, c_b_dev, c_c_dev,
-                                      p_a_dev, p_b_dev, p_c_dev, p_steps, t_steps, count);
+    dim3 blockDim(price_steps + 1);
+    setup_kernel<<<gridDim, blockDim>>>(call_vals_gpu, put_vals_gpu, c_a_gpu, c_b_gpu, c_c_gpu, p_a_gpu, p_b_gpu, p_c_gpu, options_gpu, price_steps, time_steps);
+    cudaDeviceSynchronize();
+
+    // Launch boundaries kernel
+    int block_size = 256;
+    int num_blocks_y = (time_steps + block_size) / block_size;
+
+    gridDim = dim3(count, num_blocks_y);  // x: options, y: time slices
+    blockDim = dim3(block_size);          // threads per block
+
+    boundaries_kernel<<<gridDim, blockDim>>>(call_vals_gpu, put_vals_gpu, options_gpu, price_steps, time_steps);
+    cudaDeviceSynchronize();
+
+    // Launch FDM solver kernel
+    gridDim = dim3(count);
+    blockDim = dim3(price_steps);
+    fdm_kernel<<<gridDim, blockDim>>>(call_vals_gpu, put_vals_gpu, c_a_gpu, c_b_gpu, c_c_gpu, p_a_gpu, p_b_gpu, p_c_gpu, price_steps, time_steps, count);
     cudaDeviceSynchronize();
 
     // Copy final prices back
     for (int opt = 0; opt < count; opt++) 
     {
-        int s0_index = (int)((options_host[opt].underlying - 0.5 * options_host[opt].underlying) / ((3.0 - 0.5) * options_host[opt].underlying / p_steps));
-        cudaMemcpy(&call_prices_host[opt], call_vals_dev + opt * grid_size + IDX(s0_index, 0, p_steps), sizeof(double), cudaMemcpyDeviceToHost);
-        cudaMemcpy(&put_prices_host[opt],  put_vals_dev  + opt * grid_size + IDX(s0_index, 0, p_steps), sizeof(double), cudaMemcpyDeviceToHost);
+        double s0 = options_host[opt].underlying;
+        double s_min = 0.5 * s0;
+        double ds = (3.0 * s0 - s_min) / price_steps;
+        int s0_index = (int)((s0 - s_min) / ds);        
+        cudaMemcpy(&call_prices_host[opt], call_vals_gpu + opt * grid_size + IDX(s0_index, 0, price_steps), sizeof(double), cudaMemcpyDeviceToHost);
+        cudaMemcpy(&put_prices_host[opt],  put_vals_gpu  + opt * grid_size + IDX(s0_index, 0, price_steps), sizeof(double), cudaMemcpyDeviceToHost);
+        if (opt == 2)
+        {
+            printf("[MAIN-COPYBACK] opt=%d s0_index=%d call_val=%.6f put_val=%.6f\n",
+                opt, s0_index, call_prices_host[opt], put_prices_host[opt]);
+        }
     }
+    
 
     double time_taken = CLOCK() - start;
 
@@ -174,13 +252,9 @@ int main()
     free(options_host);
     free(call_prices_host);
     free(put_prices_host);
-    free(call_vals_host);
-    free(put_vals_host);
-    free(c_a); free(c_b); free(c_c);
-    free(p_a); free(p_b); free(p_c);
-    cudaFree(call_vals_dev); cudaFree(put_vals_dev);
-    cudaFree(c_a_dev); cudaFree(c_b_dev); cudaFree(c_c_dev);
-    cudaFree(p_a_dev); cudaFree(p_b_dev); cudaFree(p_c_dev);
+    cudaFree(call_vals_gpu); cudaFree(put_vals_gpu);
+    cudaFree(c_a_gpu); cudaFree(c_b_gpu); cudaFree(c_c_gpu);
+    cudaFree(p_a_gpu); cudaFree(p_b_gpu); cudaFree(p_c_gpu);
 
     return 0;
 }
