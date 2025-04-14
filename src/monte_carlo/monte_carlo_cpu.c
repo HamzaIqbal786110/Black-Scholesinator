@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <omp.h>
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_LINES 10
@@ -24,8 +25,6 @@ typedef struct {
 option_spread *read_csv(const char *filename, int *count) {
     FILE *file = fopen(filename, "r");
     if (!file) {
-	printf("failed");
-	fflush(stdout);
         perror("Error opening file");
         exit(EXIT_FAILURE);
     }
@@ -33,7 +32,7 @@ option_spread *read_csv(const char *filename, int *count) {
     char line[MAX_LINE_LENGTH];
     int idx = 0;
 
-    option_spread *options = (option_spread*) malloc(MAX_LINES * sizeof(option_spread));
+    option_spread *options = malloc(MAX_LINES * sizeof(option_spread));
     if (!options) {
         perror("Memory allocation failed");
         exit(EXIT_FAILURE);
@@ -71,36 +70,42 @@ option_spread *read_csv(const char *filename, int *count) {
     fclose(file);
     *count = idx;
     return options;
-} 
-
+}
 double CLOCK() {
     struct timespec t;
     clock_gettime(CLOCK_MONOTONIC, &t);
     return (t.tv_sec * 1000) + (t.tv_nsec * 1e-6);
 }
 
-double gaussian_random() 
+double gaussian_random(unsigned int* seed) 
 {
-    double u1 = ((double) rand() + 1.0) / ((double) RAND_MAX + 2.0); // avoid log(0)
-    double u2 = ((double) rand() + 1.0) / ((double) RAND_MAX + 2.0);
+    double u1 = ((double) rand_r(seed) + 1.0) / ((double) RAND_MAX + 2.0); // avoid log(0)
+    double u2 = ((double) rand_r(seed) + 1.0) / ((double) RAND_MAX + 2.0);
     return sqrt(-2.0 * log(u1)) * cos(2.0 * acos(-1.0) * u2);
 }
 
 void monte_carlo_pricer(option_spread option, double prices[2])
 {
-   
+    unsigned int seed;   
+    #pragma omp parallel
+{
+    seed = omp_get_thread_num() + time(NULL);
+}
+
     double s0 = option.underlying;
     double r = option.rfr;
-    double sigma_c = option.c_iv;
-    double sigma_p = option.p_iv;
+    const double sigma_c = option.c_iv;
+    const double sigma_p = option.p_iv;
     double T = option.dte / 365.0;
     double k = option.strike;
     double z_c, z_p, s_c_pos, s_c_neg, s_p_pos, s_p_neg;
     double v_c = 0, v_p = 0;
+
+    #pragma omp parallel for reduction(+:v_c,v_p) private(z_c, z_p, s_c_pos, s_c_neg, s_p_pos, s_p_neg)
     for(int i = 0; i < N_ITER; i++)
     {
-        z_c = gaussian_random();
-        z_p = gaussian_random();
+        z_c = gaussian_random(&seed);
+        z_p = gaussian_random(&seed);
 
         // Simulate for z_c and -z_c (call side)
         s_c_pos = s0 * exp(((r - 0.5 * sigma_c * sigma_c) * T) + sigma_c * sqrt(T) * z_c);
@@ -118,7 +123,6 @@ void monte_carlo_pricer(option_spread option, double prices[2])
     prices[0] = v_c;
     prices[1] = v_p;
 
-    return;
 }
 
 int main(int argc, char **argv){
@@ -131,36 +135,34 @@ int main(int argc, char **argv){
     N_ITER = atoi(argv[1]);
     N_RUNS = atoi(argv[2]);
 
-    srand(time(NULL));
-
     double total_time = 0;
 
-    for (int runs =0; runs < N_RUNS; runs++){
+    for (int runs = 0; runs <N_RUNS; runs++){
 
-        int count = 0;
-        option_spread *options = read_csv("nvda_data_filtered.csv", &count);
+    int count = 0;
+    option_spread *options = read_csv("nvda_data_filtered.csv", &count);
+   // printf("Index  | Call Model | Call Actual | Put Model  | Put Actual\n");
+    //printf("--------------------------------------------------------------\n");
 
-        // printf("Index  | Call Model | Call Actual | Put Model  | Put Actual\n");
-        //printf("--------------------------------------------------------------\n");
+    double start_time = CLOCK();
 
-        double start_time = CLOCK();
-        for (int i = 0; i < count; i++) {
-            double prices[2];
-            monte_carlo_pricer(options[i], prices);
-            //printf("%-7d| %-11.4f| %-12.4f| %-11.4f| %-10.4f\n",
-            //     i,
-                //   prices[0], options[i].c_mid,
-                // prices[1], options[i].p_mid);
-        }
-
-        free(options);
-
-        double end_time = CLOCK();
-
-        total_time += end_time - start_time;
+  
+    for (int i = 0; i < count; i++) {
+        double prices[2];
+        monte_carlo_pricer(options[i], prices);
+        //printf("%-7d| %-11.4f| %-12.4f| %-11.4f| %-10.4f\n",
+          //     i,
+            //   prices[0], options[i].c_mid,
+              // prices[1], options[i].p_mid);
     }
-   
+
+    free(options);
+
+    double end_time = CLOCK();
+    total_time += end_time - start_time;
+
+    }
+    
     printf("AVG Time: %f\n", total_time/N_RUNS);
     return 0;
-    
 }
