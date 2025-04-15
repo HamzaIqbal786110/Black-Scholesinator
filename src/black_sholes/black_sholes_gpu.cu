@@ -8,6 +8,7 @@
 #include "parser.h"
 
 #define IDX(i, j, price_steps) ((j) * ((price_steps) + 1) + (i))
+#define BLOCK_SIZE 256
 
 double CLOCK() 
 {
@@ -23,8 +24,20 @@ __global__ void fdm_kernel(
     const double *p_a, const double *p_b, const double *p_c,
     int price_steps, int time_steps, int count)
 {
+    // ASSUMES THAT BLOCK SIZE >= price_steps + 2
+    // WILL BREAK IF NOT
+    __shared__ double c_vals_shared[BLOCK_SIZE];
+    __shared__ double p_vals_shared[BLOCK_SIZE];
+    __shared__ double c_a_shared[BLOCK_SIZE];
+    __shared__ double c_b_shared[BLOCK_SIZE];
+    __shared__ double c_c_shared[BLOCK_SIZE];
+    __shared__ double p_a_shared[BLOCK_SIZE];
+    __shared__ double p_b_shared[BLOCK_SIZE];
+    __shared__ double p_c_shared[BLOCK_SIZE];
+
     int opt_id = blockIdx.x;
     int i = threadIdx.x + 1;
+    int tid = threadIdx.x;
 
     if (opt_id >= count || i >= price_steps) return;
 
@@ -32,36 +45,43 @@ __global__ void fdm_kernel(
     size_t coef_offset = opt_id * (price_steps + 1);
     size_t offset = opt_id * grid_size;
 
+    c_a_shared[tid] = c_a[coef_offset + i];
+    c_b_shared[tid] = c_b[coef_offset + i];
+    c_c_shared[tid] = c_c[coef_offset + i];
+    p_a_shared[tid] = p_a[coef_offset + i];
+    p_b_shared[tid] = p_b[coef_offset + i];
+    p_c_shared[tid] = p_c[coef_offset + i];
+
+    __syncthreads();
+    
+
     for (int j = time_steps - 1; j >= 0; j--) 
     {
         size_t idx   = offset + IDX(i, j, price_steps);
-        size_t idx_l = offset + IDX(i - 1, j + 1, price_steps);
-        size_t idx_c = offset + IDX(i,     j + 1, price_steps);
-        size_t idx_r = offset + IDX(i + 1, j + 1, price_steps);
+        // size_t idx_l = offset + IDX(i - 1, j + 1, price_steps);
+        // size_t idx_c = offset + IDX(i,     j + 1, price_steps);
+        // size_t idx_r = offset + IDX(i + 1, j + 1, price_steps);
+        c_vals_shared[tid]     = c_vals[offset + IDX(i - 1, j + 1, price_steps)];
+        c_vals_shared[tid + 1] = c_vals[offset + IDX(i,     j + 1, price_steps)];
+        c_vals_shared[tid + 2] = c_vals[offset + IDX(i + 1, j + 1, price_steps)];
+        p_vals_shared[tid]     = p_vals[offset + IDX(i - 1, j + 1, price_steps)];
+        p_vals_shared[tid + 1] = p_vals[offset + IDX(i,     j + 1, price_steps)];
+        p_vals_shared[tid + 2] = p_vals[offset + IDX(i + 1, j + 1, price_steps)];
+        
+        __syncthreads();
 
         c_vals[idx] =
-            c_a[coef_offset + i] * c_vals[idx_l] +
-            c_b[coef_offset + i] * c_vals[idx_c] +
-            c_c[coef_offset + i] * c_vals[idx_r];
+            c_a_shared[tid] * c_vals_shared[tid] +
+            c_b_shared[tid] * c_vals_shared[tid + 1] +
+            c_c_shared[tid] * c_vals_shared[tid + 2];
 
         p_vals[idx] =
-            p_a[coef_offset + i] * p_vals[idx_l] +
-            p_b[coef_offset + i] * p_vals[idx_c] +
-            p_c[coef_offset + i] * p_vals[idx_r];
-        // if (opt_id == 2 && i == 40)
-        // {
-        //     printf("[FDM-BEGIN] opt=%d i=%d j=%d idx=%lu idx_l=%lu idx_c=%lu idx_r=%lu\n",
-        //         opt_id, i, j, idx, idx_l, idx_c, idx_r);
+            p_a_shared[tid] * p_vals_shared[tid] +
+            p_b_shared[tid] * p_vals_shared[tid + 1] +
+            p_c_shared[tid] * p_vals_shared[tid + 2];
+
+        __syncthreads();
         
-        //     printf("[FDM-VALS] j=%d c_l=%.5f c_c=%.5f c_r=%.5f\n",
-        //         j, c_vals[idx_l], c_vals[idx_c], c_vals[idx_r]);
-        
-        //     printf("[FDM-COEF] a=%.6f b=%.6f c=%.6f\n",
-        //         c_a[coef_offset + i], c_b[coef_offset + i], c_c[coef_offset + i]);
-        
-        //     printf("[FDM-OUT] j=%d call=%.6f put=%.6f\n",
-        //         j, c_vals[idx], p_vals[idx]);
-        // }
     }
 }
 
@@ -115,10 +135,6 @@ __global__ void setup_kernel(
         p_b[coef_offset + i] = 1.0 - dt * (gamma_p / (ds * ds) + r);
         p_c[coef_offset + i] = 0.5 * dt * (gamma_p + drift) / (ds * ds);
     }
-    if (opt == 2 && (i == 40 || i == 100))
-    {
-        printf("[SETUP] opt=%d i=%d s=%.4f ds=%.4f s_min=%.4f k=%.4f\n", opt, i, s, ds, s_min, k);
-    }
 }
 
 __global__ void boundaries_kernel(
@@ -147,16 +163,6 @@ __global__ void boundaries_kernel(
 
     call_vals[offset + IDX(price_steps, j, price_steps)] = (3.0 * s0) - k * exp(-r * (T - T_j));
     put_vals[offset + IDX(price_steps, j, price_steps)] = 0.0;
-
-    // if (opt == 2 && (j == 0 || j == time_steps))
-    // {
-    //     printf("[BOUNDARIES] opt=%d j=%d call_L=%.4f put_L=%.4f call_R=%.4f put_R=%.4f\n",
-    //         opt, j,
-    //         call_vals[offset + IDX(0, j, price_steps)],
-    //         put_vals[offset + IDX(0, j, price_steps)],
-    //         call_vals[offset + IDX(price_steps, j, price_steps)],
-    //         put_vals[offset + IDX(price_steps, j, price_steps)]);
-    // }
 }
 
 int main() 
@@ -215,7 +221,7 @@ int main()
 
     // Launch FDM solver kernel
     gridDim = dim3(count);
-    blockDim = dim3(price_steps);
+    blockDim = dim3(BLOCK_SIZE);
     fdm_kernel<<<gridDim, blockDim>>>(call_vals_gpu, put_vals_gpu, c_a_gpu, c_b_gpu, c_c_gpu, p_a_gpu, p_b_gpu, p_c_gpu, price_steps, time_steps, count);
     cudaDeviceSynchronize();
 
