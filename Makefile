@@ -14,7 +14,9 @@ BIN_DIR = bin
 COMMON_SRC = $(SRC_DIR)/common/parser.c
 BLACK_SCHOLES_BASE_SRC = $(SRC_DIR)/black_sholes/black_scholes_base.c
 BLACK_SCHOLES_CPU_ACC_SRC = $(SRC_DIR)/black_sholes/black_scholes_cpu_acc.c
-BLACK_SCHOLES_GPU_SRC = $(SRC_DIR)/black_sholes/black_sholes_gpu.cu
+BLACK_SCHOLES_GPU_SRC = $(SRC_DIR)/black_sholes/black_scholes_gpu.cu
+BLACK_SCHOLES_HYBRID_SRC = $(SRC_DIR)/black_sholes/black_scholes_hybrid1.cu
+BLACK_SCHOLES_HYBRID2_SRC = $(SRC_DIR)/black_sholes/black_scholes_hybrid2.cu
 MONTE_CARLO_BASE_SRC = $(SRC_DIR)/monte_carlo/monte_carlo_base.c
 
 # Object files
@@ -24,10 +26,18 @@ COMMON_OBJ = $(OBJ_DIR)/parser.o
 BLACK_SCHOLES_BASE_BIN = $(BIN_DIR)/black_scholes_base
 BLACK_SCHOLES_CPU_ACC_BIN = $(BIN_DIR)/black_scholes_cpu_acc
 BLACK_SCHOLES_GPU_BIN = $(BIN_DIR)/black_scholes_gpu
+BLACK_SCHOLES_HYBRID_BIN = $(BIN_DIR)/black_scholes_hybrid1
+BLACK_SCHOLES_HYBRID2_BIN = $(BIN_DIR)/black_scholes_hybrid2
 MONTE_CARLO_BASE_BIN = $(BIN_DIR)/monte_carlo_base
 
 # Default target
-all: $(BLACK_SCHOLES_BASE_BIN) $(BLACK_SCHOLES_CPU_ACC_BIN) $(BLACK_SCHOLES_GPU_BIN) $(MONTE_CARLO_BASE_BIN)
+all: $(BLACK_SCHOLES_BASE_BIN) \
+     $(BLACK_SCHOLES_CPU_ACC_BIN) \
+     $(BLACK_SCHOLES_GPU_BIN) \
+     $(BLACK_SCHOLES_HYBRID_BIN) \
+     $(BLACK_SCHOLES_HYBRID2_BIN) \
+     $(BLACK_SCHOLES_HYBRID3_BIN) \
+     $(MONTE_CARLO_BASE_BIN)
 
 # Compile C source to object
 $(COMMON_OBJ): $(COMMON_SRC) include/parser.h | $(OBJ_DIR)
@@ -43,7 +53,15 @@ $(BLACK_SCHOLES_CPU_ACC_BIN): $(BLACK_SCHOLES_CPU_ACC_SRC) $(COMMON_SRC)
 
 # GPU binary (linking precompiled parser.o)
 $(BLACK_SCHOLES_GPU_BIN): $(BLACK_SCHOLES_GPU_SRC) $(COMMON_OBJ)
-	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -o $@ $< obj/parser.o
+	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -o $@ $< $(COMMON_OBJ)
+
+# Hybrid GPU+CPU binary (v1)
+$(BLACK_SCHOLES_HYBRID_BIN): $(BLACK_SCHOLES_HYBRID_SRC) $(COMMON_OBJ)
+	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -o $@ $< $(COMMON_OBJ)
+
+# Hybrid GPU+CPU binary (v2)
+$(BLACK_SCHOLES_HYBRID2_BIN): $(BLACK_SCHOLES_HYBRID2_SRC) $(COMMON_OBJ)
+	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -o $@ $< $(COMMON_OBJ)
 
 # Monte Carlo base binary
 $(MONTE_CARLO_BASE_BIN): $(MONTE_CARLO_BASE_SRC) $(COMMON_SRC)

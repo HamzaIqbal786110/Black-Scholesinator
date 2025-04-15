@@ -13,7 +13,7 @@ double CLOCK()
     return (t.tv_sec * 1000)+(t.tv_nsec*1e-6);
 }
 
-int main() 
+int main(int argc, char *argv[]) 
 {
     double start, end, total;
     int count = 0;
@@ -26,6 +26,15 @@ int main()
     // FDM grid configuration
     int p_steps = 200;
     int t_steps = 100000;
+    if (argc >= 2) 
+    {
+        p_steps = atoi(argv[1]);
+    }
+
+    if (argc >= 3) 
+    {
+        t_steps = atoi(argv[2]);
+    }
 
     double **c_vals = calloc(p_steps + 1, sizeof(double*));
     double **p_vals = calloc(p_steps + 1, sizeof(double*));
@@ -120,6 +129,7 @@ int main()
     }
 
     total = end - start;
+    printf("\nPSTEPS = %i, TSTEPS = %i\n", p_steps, t_steps);
     printf("\nTIME TAKEN = %.5f ms\n", total);
     // Free allocated memory
     for (int j = 0; j <= p_steps; j++) {

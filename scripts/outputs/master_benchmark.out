@@ -1,4 +1,601 @@
-Running benchmarks...
-Benchmarking: bin/black_scholes_base
-Benchmarking: bin/black_scholes_cpu_acc
-Benchmarking: bin/black_scholes_gpu
+Starting Benchmarks...
+Configuration: p_steps=20, t_steps=10000
+Benchmarking: black_scholes_base with p=20, t=10000
+Benchmarking: black_scholes_cpu_acc with p=20, t=10000
+Benchmarking: black_scholes_gpu with p=20, t=10000
+Benchmarking: black_scholes_hybrid1 with p=20, t=10000
+Benchmarking: black_scholes_hybrid2 with p=20, t=10000
+Configuration: p_steps=20, t_steps=20000
+Benchmarking: black_scholes_base with p=20, t=20000
+Benchmarking: black_scholes_cpu_acc with p=20, t=20000
+Benchmarking: black_scholes_gpu with p=20, t=20000
+Benchmarking: black_scholes_hybrid1 with p=20, t=20000
+Benchmarking: black_scholes_hybrid2 with p=20, t=20000
+Configuration: p_steps=20, t_steps=30000
+Benchmarking: black_scholes_base with p=20, t=30000
+Benchmarking: black_scholes_cpu_acc with p=20, t=30000
+Benchmarking: black_scholes_gpu with p=20, t=30000
+Benchmarking: black_scholes_hybrid1 with p=20, t=30000
+Benchmarking: black_scholes_hybrid2 with p=20, t=30000
+Configuration: p_steps=20, t_steps=40000
+Benchmarking: black_scholes_base with p=20, t=40000
+Benchmarking: black_scholes_cpu_acc with p=20, t=40000
+Benchmarking: black_scholes_gpu with p=20, t=40000
+Benchmarking: black_scholes_hybrid1 with p=20, t=40000
+Benchmarking: black_scholes_hybrid2 with p=20, t=40000
+Configuration: p_steps=20, t_steps=50000
+Benchmarking: black_scholes_base with p=20, t=50000
+Benchmarking: black_scholes_cpu_acc with p=20, t=50000
+Benchmarking: black_scholes_gpu with p=20, t=50000
+Benchmarking: black_scholes_hybrid1 with p=20, t=50000
+Benchmarking: black_scholes_hybrid2 with p=20, t=50000
+Configuration: p_steps=20, t_steps=60000
+Benchmarking: black_scholes_base with p=20, t=60000
+Benchmarking: black_scholes_cpu_acc with p=20, t=60000
+Benchmarking: black_scholes_gpu with p=20, t=60000
+Benchmarking: black_scholes_hybrid1 with p=20, t=60000
+Benchmarking: black_scholes_hybrid2 with p=20, t=60000
+Configuration: p_steps=20, t_steps=70000
+Benchmarking: black_scholes_base with p=20, t=70000
+Benchmarking: black_scholes_cpu_acc with p=20, t=70000
+Benchmarking: black_scholes_gpu with p=20, t=70000
+Benchmarking: black_scholes_hybrid1 with p=20, t=70000
+Benchmarking: black_scholes_hybrid2 with p=20, t=70000
+Configuration: p_steps=20, t_steps=80000
+Benchmarking: black_scholes_base with p=20, t=80000
+Benchmarking: black_scholes_cpu_acc with p=20, t=80000
+Benchmarking: black_scholes_gpu with p=20, t=80000
+Benchmarking: black_scholes_hybrid1 with p=20, t=80000
+Benchmarking: black_scholes_hybrid2 with p=20, t=80000
+Configuration: p_steps=20, t_steps=90000
+Benchmarking: black_scholes_base with p=20, t=90000
+Benchmarking: black_scholes_cpu_acc with p=20, t=90000
+Benchmarking: black_scholes_gpu with p=20, t=90000
+Benchmarking: black_scholes_hybrid1 with p=20, t=90000
+Benchmarking: black_scholes_hybrid2 with p=20, t=90000
+Configuration: p_steps=20, t_steps=100000
+Benchmarking: black_scholes_base with p=20, t=100000
+Benchmarking: black_scholes_cpu_acc with p=20, t=100000
+Benchmarking: black_scholes_gpu with p=20, t=100000
+Benchmarking: black_scholes_hybrid1 with p=20, t=100000
+Benchmarking: black_scholes_hybrid2 with p=20, t=100000
+Configuration: p_steps=40, t_steps=10000
+Benchmarking: black_scholes_base with p=40, t=10000
+Benchmarking: black_scholes_cpu_acc with p=40, t=10000
+Benchmarking: black_scholes_gpu with p=40, t=10000
+Benchmarking: black_scholes_hybrid1 with p=40, t=10000
+Benchmarking: black_scholes_hybrid2 with p=40, t=10000
+Configuration: p_steps=40, t_steps=20000
+Benchmarking: black_scholes_base with p=40, t=20000
+Benchmarking: black_scholes_cpu_acc with p=40, t=20000
+Benchmarking: black_scholes_gpu with p=40, t=20000
+Benchmarking: black_scholes_hybrid1 with p=40, t=20000
+Benchmarking: black_scholes_hybrid2 with p=40, t=20000
+Configuration: p_steps=40, t_steps=30000
+Benchmarking: black_scholes_base with p=40, t=30000
+Benchmarking: black_scholes_cpu_acc with p=40, t=30000
+Benchmarking: black_scholes_gpu with p=40, t=30000
+Benchmarking: black_scholes_hybrid1 with p=40, t=30000
+Benchmarking: black_scholes_hybrid2 with p=40, t=30000
+Configuration: p_steps=40, t_steps=40000
+Benchmarking: black_scholes_base with p=40, t=40000
+Benchmarking: black_scholes_cpu_acc with p=40, t=40000
+Benchmarking: black_scholes_gpu with p=40, t=40000
+Benchmarking: black_scholes_hybrid1 with p=40, t=40000
+Benchmarking: black_scholes_hybrid2 with p=40, t=40000
+Configuration: p_steps=40, t_steps=50000
+Benchmarking: black_scholes_base with p=40, t=50000
+Benchmarking: black_scholes_cpu_acc with p=40, t=50000
+Benchmarking: black_scholes_gpu with p=40, t=50000
+Benchmarking: black_scholes_hybrid1 with p=40, t=50000
+Benchmarking: black_scholes_hybrid2 with p=40, t=50000
+Configuration: p_steps=40, t_steps=60000
+Benchmarking: black_scholes_base with p=40, t=60000
+Benchmarking: black_scholes_cpu_acc with p=40, t=60000
+Benchmarking: black_scholes_gpu with p=40, t=60000
+Benchmarking: black_scholes_hybrid1 with p=40, t=60000
+Benchmarking: black_scholes_hybrid2 with p=40, t=60000
+Configuration: p_steps=40, t_steps=70000
+Benchmarking: black_scholes_base with p=40, t=70000
+Benchmarking: black_scholes_cpu_acc with p=40, t=70000
+Benchmarking: black_scholes_gpu with p=40, t=70000
+Benchmarking: black_scholes_hybrid1 with p=40, t=70000
+Benchmarking: black_scholes_hybrid2 with p=40, t=70000
+Configuration: p_steps=40, t_steps=80000
+Benchmarking: black_scholes_base with p=40, t=80000
+Benchmarking: black_scholes_cpu_acc with p=40, t=80000
+Benchmarking: black_scholes_gpu with p=40, t=80000
+Benchmarking: black_scholes_hybrid1 with p=40, t=80000
+Benchmarking: black_scholes_hybrid2 with p=40, t=80000
+Configuration: p_steps=40, t_steps=90000
+Benchmarking: black_scholes_base with p=40, t=90000
+Benchmarking: black_scholes_cpu_acc with p=40, t=90000
+Benchmarking: black_scholes_gpu with p=40, t=90000
+Benchmarking: black_scholes_hybrid1 with p=40, t=90000
+Benchmarking: black_scholes_hybrid2 with p=40, t=90000
+Configuration: p_steps=40, t_steps=100000
+Benchmarking: black_scholes_base with p=40, t=100000
+Benchmarking: black_scholes_cpu_acc with p=40, t=100000
+Benchmarking: black_scholes_gpu with p=40, t=100000
+Benchmarking: black_scholes_hybrid1 with p=40, t=100000
+Benchmarking: black_scholes_hybrid2 with p=40, t=100000
+Configuration: p_steps=60, t_steps=10000
+Benchmarking: black_scholes_base with p=60, t=10000
+Benchmarking: black_scholes_cpu_acc with p=60, t=10000
+Benchmarking: black_scholes_gpu with p=60, t=10000
+Benchmarking: black_scholes_hybrid1 with p=60, t=10000
+Benchmarking: black_scholes_hybrid2 with p=60, t=10000
+Configuration: p_steps=60, t_steps=20000
+Benchmarking: black_scholes_base with p=60, t=20000
+Benchmarking: black_scholes_cpu_acc with p=60, t=20000
+Benchmarking: black_scholes_gpu with p=60, t=20000
+Benchmarking: black_scholes_hybrid1 with p=60, t=20000
+Benchmarking: black_scholes_hybrid2 with p=60, t=20000
+Configuration: p_steps=60, t_steps=30000
+Benchmarking: black_scholes_base with p=60, t=30000
+Benchmarking: black_scholes_cpu_acc with p=60, t=30000
+Benchmarking: black_scholes_gpu with p=60, t=30000
+Benchmarking: black_scholes_hybrid1 with p=60, t=30000
+Benchmarking: black_scholes_hybrid2 with p=60, t=30000
+Configuration: p_steps=60, t_steps=40000
+Benchmarking: black_scholes_base with p=60, t=40000
+Benchmarking: black_scholes_cpu_acc with p=60, t=40000
+Benchmarking: black_scholes_gpu with p=60, t=40000
+Benchmarking: black_scholes_hybrid1 with p=60, t=40000
+Benchmarking: black_scholes_hybrid2 with p=60, t=40000
+Configuration: p_steps=60, t_steps=50000
+Benchmarking: black_scholes_base with p=60, t=50000
+Benchmarking: black_scholes_cpu_acc with p=60, t=50000
+Benchmarking: black_scholes_gpu with p=60, t=50000
+Benchmarking: black_scholes_hybrid1 with p=60, t=50000
+Benchmarking: black_scholes_hybrid2 with p=60, t=50000
+Configuration: p_steps=60, t_steps=60000
+Benchmarking: black_scholes_base with p=60, t=60000
+Benchmarking: black_scholes_cpu_acc with p=60, t=60000
+Benchmarking: black_scholes_gpu with p=60, t=60000
+Benchmarking: black_scholes_hybrid1 with p=60, t=60000
+Benchmarking: black_scholes_hybrid2 with p=60, t=60000
+Configuration: p_steps=60, t_steps=70000
+Benchmarking: black_scholes_base with p=60, t=70000
+Benchmarking: black_scholes_cpu_acc with p=60, t=70000
+Benchmarking: black_scholes_gpu with p=60, t=70000
+Benchmarking: black_scholes_hybrid1 with p=60, t=70000
+Benchmarking: black_scholes_hybrid2 with p=60, t=70000
+Configuration: p_steps=60, t_steps=80000
+Benchmarking: black_scholes_base with p=60, t=80000
+Benchmarking: black_scholes_cpu_acc with p=60, t=80000
+Benchmarking: black_scholes_gpu with p=60, t=80000
+Benchmarking: black_scholes_hybrid1 with p=60, t=80000
+Benchmarking: black_scholes_hybrid2 with p=60, t=80000
+Configuration: p_steps=60, t_steps=90000
+Benchmarking: black_scholes_base with p=60, t=90000
+Benchmarking: black_scholes_cpu_acc with p=60, t=90000
+Benchmarking: black_scholes_gpu with p=60, t=90000
+Benchmarking: black_scholes_hybrid1 with p=60, t=90000
+Benchmarking: black_scholes_hybrid2 with p=60, t=90000
+Configuration: p_steps=60, t_steps=100000
+Benchmarking: black_scholes_base with p=60, t=100000
+Benchmarking: black_scholes_cpu_acc with p=60, t=100000
+Benchmarking: black_scholes_gpu with p=60, t=100000
+Benchmarking: black_scholes_hybrid1 with p=60, t=100000
+Benchmarking: black_scholes_hybrid2 with p=60, t=100000
+Configuration: p_steps=80, t_steps=10000
+Benchmarking: black_scholes_base with p=80, t=10000
+Benchmarking: black_scholes_cpu_acc with p=80, t=10000
+Benchmarking: black_scholes_gpu with p=80, t=10000
+Benchmarking: black_scholes_hybrid1 with p=80, t=10000
+Benchmarking: black_scholes_hybrid2 with p=80, t=10000
+Configuration: p_steps=80, t_steps=20000
+Benchmarking: black_scholes_base with p=80, t=20000
+Benchmarking: black_scholes_cpu_acc with p=80, t=20000
+Benchmarking: black_scholes_gpu with p=80, t=20000
+Benchmarking: black_scholes_hybrid1 with p=80, t=20000
+Benchmarking: black_scholes_hybrid2 with p=80, t=20000
+Configuration: p_steps=80, t_steps=30000
+Benchmarking: black_scholes_base with p=80, t=30000
+Benchmarking: black_scholes_cpu_acc with p=80, t=30000
+Benchmarking: black_scholes_gpu with p=80, t=30000
+Benchmarking: black_scholes_hybrid1 with p=80, t=30000
+Benchmarking: black_scholes_hybrid2 with p=80, t=30000
+Configuration: p_steps=80, t_steps=40000
+Benchmarking: black_scholes_base with p=80, t=40000
+Benchmarking: black_scholes_cpu_acc with p=80, t=40000
+Benchmarking: black_scholes_gpu with p=80, t=40000
+Benchmarking: black_scholes_hybrid1 with p=80, t=40000
+Benchmarking: black_scholes_hybrid2 with p=80, t=40000
+Configuration: p_steps=80, t_steps=50000
+Benchmarking: black_scholes_base with p=80, t=50000
+Benchmarking: black_scholes_cpu_acc with p=80, t=50000
+Benchmarking: black_scholes_gpu with p=80, t=50000
+Benchmarking: black_scholes_hybrid1 with p=80, t=50000
+Benchmarking: black_scholes_hybrid2 with p=80, t=50000
+Configuration: p_steps=80, t_steps=60000
+Benchmarking: black_scholes_base with p=80, t=60000
+Benchmarking: black_scholes_cpu_acc with p=80, t=60000
+Benchmarking: black_scholes_gpu with p=80, t=60000
+Benchmarking: black_scholes_hybrid1 with p=80, t=60000
+Benchmarking: black_scholes_hybrid2 with p=80, t=60000
+Configuration: p_steps=80, t_steps=70000
+Benchmarking: black_scholes_base with p=80, t=70000
+Benchmarking: black_scholes_cpu_acc with p=80, t=70000
+Benchmarking: black_scholes_gpu with p=80, t=70000
+Benchmarking: black_scholes_hybrid1 with p=80, t=70000
+Benchmarking: black_scholes_hybrid2 with p=80, t=70000
+Configuration: p_steps=80, t_steps=80000
+Benchmarking: black_scholes_base with p=80, t=80000
+Benchmarking: black_scholes_cpu_acc with p=80, t=80000
+Benchmarking: black_scholes_gpu with p=80, t=80000
+Benchmarking: black_scholes_hybrid1 with p=80, t=80000
+Benchmarking: black_scholes_hybrid2 with p=80, t=80000
+Configuration: p_steps=80, t_steps=90000
+Benchmarking: black_scholes_base with p=80, t=90000
+Benchmarking: black_scholes_cpu_acc with p=80, t=90000
+Benchmarking: black_scholes_gpu with p=80, t=90000
+Benchmarking: black_scholes_hybrid1 with p=80, t=90000
+Benchmarking: black_scholes_hybrid2 with p=80, t=90000
+Configuration: p_steps=80, t_steps=100000
+Benchmarking: black_scholes_base with p=80, t=100000
+Benchmarking: black_scholes_cpu_acc with p=80, t=100000
+Benchmarking: black_scholes_gpu with p=80, t=100000
+Benchmarking: black_scholes_hybrid1 with p=80, t=100000
+Benchmarking: black_scholes_hybrid2 with p=80, t=100000
+Configuration: p_steps=100, t_steps=10000
+Benchmarking: black_scholes_base with p=100, t=10000
+Benchmarking: black_scholes_cpu_acc with p=100, t=10000
+Benchmarking: black_scholes_gpu with p=100, t=10000
+Benchmarking: black_scholes_hybrid1 with p=100, t=10000
+Benchmarking: black_scholes_hybrid2 with p=100, t=10000
+Configuration: p_steps=100, t_steps=20000
+Benchmarking: black_scholes_base with p=100, t=20000
+Benchmarking: black_scholes_cpu_acc with p=100, t=20000
+Benchmarking: black_scholes_gpu with p=100, t=20000
+Benchmarking: black_scholes_hybrid1 with p=100, t=20000
+Benchmarking: black_scholes_hybrid2 with p=100, t=20000
+Configuration: p_steps=100, t_steps=30000
+Benchmarking: black_scholes_base with p=100, t=30000
+Benchmarking: black_scholes_cpu_acc with p=100, t=30000
+Benchmarking: black_scholes_gpu with p=100, t=30000
+Benchmarking: black_scholes_hybrid1 with p=100, t=30000
+Benchmarking: black_scholes_hybrid2 with p=100, t=30000
+Configuration: p_steps=100, t_steps=40000
+Benchmarking: black_scholes_base with p=100, t=40000
+Benchmarking: black_scholes_cpu_acc with p=100, t=40000
+Benchmarking: black_scholes_gpu with p=100, t=40000
+Benchmarking: black_scholes_hybrid1 with p=100, t=40000
+Benchmarking: black_scholes_hybrid2 with p=100, t=40000
+Configuration: p_steps=100, t_steps=50000
+Benchmarking: black_scholes_base with p=100, t=50000
+Benchmarking: black_scholes_cpu_acc with p=100, t=50000
+Benchmarking: black_scholes_gpu with p=100, t=50000
+Benchmarking: black_scholes_hybrid1 with p=100, t=50000
+Benchmarking: black_scholes_hybrid2 with p=100, t=50000
+Configuration: p_steps=100, t_steps=60000
+Benchmarking: black_scholes_base with p=100, t=60000
+Benchmarking: black_scholes_cpu_acc with p=100, t=60000
+Benchmarking: black_scholes_gpu with p=100, t=60000
+Benchmarking: black_scholes_hybrid1 with p=100, t=60000
+Benchmarking: black_scholes_hybrid2 with p=100, t=60000
+Configuration: p_steps=100, t_steps=70000
+Benchmarking: black_scholes_base with p=100, t=70000
+Benchmarking: black_scholes_cpu_acc with p=100, t=70000
+Benchmarking: black_scholes_gpu with p=100, t=70000
+Benchmarking: black_scholes_hybrid1 with p=100, t=70000
+Benchmarking: black_scholes_hybrid2 with p=100, t=70000
+Configuration: p_steps=100, t_steps=80000
+Benchmarking: black_scholes_base with p=100, t=80000
+Benchmarking: black_scholes_cpu_acc with p=100, t=80000
+Benchmarking: black_scholes_gpu with p=100, t=80000
+Benchmarking: black_scholes_hybrid1 with p=100, t=80000
+Benchmarking: black_scholes_hybrid2 with p=100, t=80000
+Configuration: p_steps=100, t_steps=90000
+Benchmarking: black_scholes_base with p=100, t=90000
+Benchmarking: black_scholes_cpu_acc with p=100, t=90000
+Benchmarking: black_scholes_gpu with p=100, t=90000
+Benchmarking: black_scholes_hybrid1 with p=100, t=90000
+Benchmarking: black_scholes_hybrid2 with p=100, t=90000
+Configuration: p_steps=100, t_steps=100000
+Benchmarking: black_scholes_base with p=100, t=100000
+Benchmarking: black_scholes_cpu_acc with p=100, t=100000
+Benchmarking: black_scholes_gpu with p=100, t=100000
+Benchmarking: black_scholes_hybrid1 with p=100, t=100000
+Benchmarking: black_scholes_hybrid2 with p=100, t=100000
+Configuration: p_steps=120, t_steps=10000
+Benchmarking: black_scholes_base with p=120, t=10000
+Benchmarking: black_scholes_cpu_acc with p=120, t=10000
+Benchmarking: black_scholes_gpu with p=120, t=10000
+Benchmarking: black_scholes_hybrid1 with p=120, t=10000
+Benchmarking: black_scholes_hybrid2 with p=120, t=10000
+Configuration: p_steps=120, t_steps=20000
+Benchmarking: black_scholes_base with p=120, t=20000
+Benchmarking: black_scholes_cpu_acc with p=120, t=20000
+Benchmarking: black_scholes_gpu with p=120, t=20000
+Benchmarking: black_scholes_hybrid1 with p=120, t=20000
+Benchmarking: black_scholes_hybrid2 with p=120, t=20000
+Configuration: p_steps=120, t_steps=30000
+Benchmarking: black_scholes_base with p=120, t=30000
+Benchmarking: black_scholes_cpu_acc with p=120, t=30000
+Benchmarking: black_scholes_gpu with p=120, t=30000
+Benchmarking: black_scholes_hybrid1 with p=120, t=30000
+Benchmarking: black_scholes_hybrid2 with p=120, t=30000
+Configuration: p_steps=120, t_steps=40000
+Benchmarking: black_scholes_base with p=120, t=40000
+Benchmarking: black_scholes_cpu_acc with p=120, t=40000
+Benchmarking: black_scholes_gpu with p=120, t=40000
+Benchmarking: black_scholes_hybrid1 with p=120, t=40000
+Benchmarking: black_scholes_hybrid2 with p=120, t=40000
+Configuration: p_steps=120, t_steps=50000
+Benchmarking: black_scholes_base with p=120, t=50000
+Benchmarking: black_scholes_cpu_acc with p=120, t=50000
+Benchmarking: black_scholes_gpu with p=120, t=50000
+Benchmarking: black_scholes_hybrid1 with p=120, t=50000
+Benchmarking: black_scholes_hybrid2 with p=120, t=50000
+Configuration: p_steps=120, t_steps=60000
+Benchmarking: black_scholes_base with p=120, t=60000
+Benchmarking: black_scholes_cpu_acc with p=120, t=60000
+Benchmarking: black_scholes_gpu with p=120, t=60000
+Benchmarking: black_scholes_hybrid1 with p=120, t=60000
+Benchmarking: black_scholes_hybrid2 with p=120, t=60000
+Configuration: p_steps=120, t_steps=70000
+Benchmarking: black_scholes_base with p=120, t=70000
+Benchmarking: black_scholes_cpu_acc with p=120, t=70000
+Benchmarking: black_scholes_gpu with p=120, t=70000
+Benchmarking: black_scholes_hybrid1 with p=120, t=70000
+Benchmarking: black_scholes_hybrid2 with p=120, t=70000
+Configuration: p_steps=120, t_steps=80000
+Benchmarking: black_scholes_base with p=120, t=80000
+Benchmarking: black_scholes_cpu_acc with p=120, t=80000
+Benchmarking: black_scholes_gpu with p=120, t=80000
+Benchmarking: black_scholes_hybrid1 with p=120, t=80000
+Benchmarking: black_scholes_hybrid2 with p=120, t=80000
+Configuration: p_steps=120, t_steps=90000
+Benchmarking: black_scholes_base with p=120, t=90000
+Benchmarking: black_scholes_cpu_acc with p=120, t=90000
+Benchmarking: black_scholes_gpu with p=120, t=90000
+Benchmarking: black_scholes_hybrid1 with p=120, t=90000
+Benchmarking: black_scholes_hybrid2 with p=120, t=90000
+Configuration: p_steps=120, t_steps=100000
+Benchmarking: black_scholes_base with p=120, t=100000
+Benchmarking: black_scholes_cpu_acc with p=120, t=100000
+Benchmarking: black_scholes_gpu with p=120, t=100000
+Benchmarking: black_scholes_hybrid1 with p=120, t=100000
+Benchmarking: black_scholes_hybrid2 with p=120, t=100000
+Configuration: p_steps=140, t_steps=10000
+Benchmarking: black_scholes_base with p=140, t=10000
+Benchmarking: black_scholes_cpu_acc with p=140, t=10000
+Benchmarking: black_scholes_gpu with p=140, t=10000
+Benchmarking: black_scholes_hybrid1 with p=140, t=10000
+Benchmarking: black_scholes_hybrid2 with p=140, t=10000
+Configuration: p_steps=140, t_steps=20000
+Benchmarking: black_scholes_base with p=140, t=20000
+Benchmarking: black_scholes_cpu_acc with p=140, t=20000
+Benchmarking: black_scholes_gpu with p=140, t=20000
+Benchmarking: black_scholes_hybrid1 with p=140, t=20000
+Benchmarking: black_scholes_hybrid2 with p=140, t=20000
+Configuration: p_steps=140, t_steps=30000
+Benchmarking: black_scholes_base with p=140, t=30000
+Benchmarking: black_scholes_cpu_acc with p=140, t=30000
+Benchmarking: black_scholes_gpu with p=140, t=30000
+Benchmarking: black_scholes_hybrid1 with p=140, t=30000
+Benchmarking: black_scholes_hybrid2 with p=140, t=30000
+Configuration: p_steps=140, t_steps=40000
+Benchmarking: black_scholes_base with p=140, t=40000
+Benchmarking: black_scholes_cpu_acc with p=140, t=40000
+Benchmarking: black_scholes_gpu with p=140, t=40000
+Benchmarking: black_scholes_hybrid1 with p=140, t=40000
+Benchmarking: black_scholes_hybrid2 with p=140, t=40000
+Configuration: p_steps=140, t_steps=50000
+Benchmarking: black_scholes_base with p=140, t=50000
+Benchmarking: black_scholes_cpu_acc with p=140, t=50000
+Benchmarking: black_scholes_gpu with p=140, t=50000
+Benchmarking: black_scholes_hybrid1 with p=140, t=50000
+Benchmarking: black_scholes_hybrid2 with p=140, t=50000
+Configuration: p_steps=140, t_steps=60000
+Benchmarking: black_scholes_base with p=140, t=60000
+Benchmarking: black_scholes_cpu_acc with p=140, t=60000
+Benchmarking: black_scholes_gpu with p=140, t=60000
+Benchmarking: black_scholes_hybrid1 with p=140, t=60000
+Benchmarking: black_scholes_hybrid2 with p=140, t=60000
+Configuration: p_steps=140, t_steps=70000
+Benchmarking: black_scholes_base with p=140, t=70000
+Benchmarking: black_scholes_cpu_acc with p=140, t=70000
+Benchmarking: black_scholes_gpu with p=140, t=70000
+Benchmarking: black_scholes_hybrid1 with p=140, t=70000
+Benchmarking: black_scholes_hybrid2 with p=140, t=70000
+Configuration: p_steps=140, t_steps=80000
+Benchmarking: black_scholes_base with p=140, t=80000
+Benchmarking: black_scholes_cpu_acc with p=140, t=80000
+Benchmarking: black_scholes_gpu with p=140, t=80000
+Benchmarking: black_scholes_hybrid1 with p=140, t=80000
+Benchmarking: black_scholes_hybrid2 with p=140, t=80000
+Configuration: p_steps=140, t_steps=90000
+Benchmarking: black_scholes_base with p=140, t=90000
+Benchmarking: black_scholes_cpu_acc with p=140, t=90000
+Benchmarking: black_scholes_gpu with p=140, t=90000
+Benchmarking: black_scholes_hybrid1 with p=140, t=90000
+Benchmarking: black_scholes_hybrid2 with p=140, t=90000
+Configuration: p_steps=140, t_steps=100000
+Benchmarking: black_scholes_base with p=140, t=100000
+Benchmarking: black_scholes_cpu_acc with p=140, t=100000
+Benchmarking: black_scholes_gpu with p=140, t=100000
+Benchmarking: black_scholes_hybrid1 with p=140, t=100000
+Benchmarking: black_scholes_hybrid2 with p=140, t=100000
+Configuration: p_steps=160, t_steps=10000
+Benchmarking: black_scholes_base with p=160, t=10000
+Benchmarking: black_scholes_cpu_acc with p=160, t=10000
+Benchmarking: black_scholes_gpu with p=160, t=10000
+Benchmarking: black_scholes_hybrid1 with p=160, t=10000
+Benchmarking: black_scholes_hybrid2 with p=160, t=10000
+Configuration: p_steps=160, t_steps=20000
+Benchmarking: black_scholes_base with p=160, t=20000
+Benchmarking: black_scholes_cpu_acc with p=160, t=20000
+Benchmarking: black_scholes_gpu with p=160, t=20000
+Benchmarking: black_scholes_hybrid1 with p=160, t=20000
+Benchmarking: black_scholes_hybrid2 with p=160, t=20000
+Configuration: p_steps=160, t_steps=30000
+Benchmarking: black_scholes_base with p=160, t=30000
+Benchmarking: black_scholes_cpu_acc with p=160, t=30000
+Benchmarking: black_scholes_gpu with p=160, t=30000
+Benchmarking: black_scholes_hybrid1 with p=160, t=30000
+Benchmarking: black_scholes_hybrid2 with p=160, t=30000
+Configuration: p_steps=160, t_steps=40000
+Benchmarking: black_scholes_base with p=160, t=40000
+Benchmarking: black_scholes_cpu_acc with p=160, t=40000
+Benchmarking: black_scholes_gpu with p=160, t=40000
+Benchmarking: black_scholes_hybrid1 with p=160, t=40000
+Benchmarking: black_scholes_hybrid2 with p=160, t=40000
+Configuration: p_steps=160, t_steps=50000
+Benchmarking: black_scholes_base with p=160, t=50000
+Benchmarking: black_scholes_cpu_acc with p=160, t=50000
+Benchmarking: black_scholes_gpu with p=160, t=50000
+Benchmarking: black_scholes_hybrid1 with p=160, t=50000
+Benchmarking: black_scholes_hybrid2 with p=160, t=50000
+Configuration: p_steps=160, t_steps=60000
+Benchmarking: black_scholes_base with p=160, t=60000
+Benchmarking: black_scholes_cpu_acc with p=160, t=60000
+Benchmarking: black_scholes_gpu with p=160, t=60000
+Benchmarking: black_scholes_hybrid1 with p=160, t=60000
+Benchmarking: black_scholes_hybrid2 with p=160, t=60000
+Configuration: p_steps=160, t_steps=70000
+Benchmarking: black_scholes_base with p=160, t=70000
+Benchmarking: black_scholes_cpu_acc with p=160, t=70000
+Benchmarking: black_scholes_gpu with p=160, t=70000
+Benchmarking: black_scholes_hybrid1 with p=160, t=70000
+Benchmarking: black_scholes_hybrid2 with p=160, t=70000
+Configuration: p_steps=160, t_steps=80000
+Benchmarking: black_scholes_base with p=160, t=80000
+Benchmarking: black_scholes_cpu_acc with p=160, t=80000
+Benchmarking: black_scholes_gpu with p=160, t=80000
+Benchmarking: black_scholes_hybrid1 with p=160, t=80000
+Benchmarking: black_scholes_hybrid2 with p=160, t=80000
+Configuration: p_steps=160, t_steps=90000
+Benchmarking: black_scholes_base with p=160, t=90000
+Benchmarking: black_scholes_cpu_acc with p=160, t=90000
+Benchmarking: black_scholes_gpu with p=160, t=90000
+Benchmarking: black_scholes_hybrid1 with p=160, t=90000
+Benchmarking: black_scholes_hybrid2 with p=160, t=90000
+Configuration: p_steps=160, t_steps=100000
+Benchmarking: black_scholes_base with p=160, t=100000
+Benchmarking: black_scholes_cpu_acc with p=160, t=100000
+Benchmarking: black_scholes_gpu with p=160, t=100000
+Benchmarking: black_scholes_hybrid1 with p=160, t=100000
+Benchmarking: black_scholes_hybrid2 with p=160, t=100000
+Configuration: p_steps=180, t_steps=10000
+Benchmarking: black_scholes_base with p=180, t=10000
+Benchmarking: black_scholes_cpu_acc with p=180, t=10000
+Benchmarking: black_scholes_gpu with p=180, t=10000
+Benchmarking: black_scholes_hybrid1 with p=180, t=10000
+Benchmarking: black_scholes_hybrid2 with p=180, t=10000
+Configuration: p_steps=180, t_steps=20000
+Benchmarking: black_scholes_base with p=180, t=20000
+Benchmarking: black_scholes_cpu_acc with p=180, t=20000
+Benchmarking: black_scholes_gpu with p=180, t=20000
+Benchmarking: black_scholes_hybrid1 with p=180, t=20000
+Benchmarking: black_scholes_hybrid2 with p=180, t=20000
+Configuration: p_steps=180, t_steps=30000
+Benchmarking: black_scholes_base with p=180, t=30000
+Benchmarking: black_scholes_cpu_acc with p=180, t=30000
+Benchmarking: black_scholes_gpu with p=180, t=30000
+Benchmarking: black_scholes_hybrid1 with p=180, t=30000
+Benchmarking: black_scholes_hybrid2 with p=180, t=30000
+Configuration: p_steps=180, t_steps=40000
+Benchmarking: black_scholes_base with p=180, t=40000
+Benchmarking: black_scholes_cpu_acc with p=180, t=40000
+Benchmarking: black_scholes_gpu with p=180, t=40000
+Benchmarking: black_scholes_hybrid1 with p=180, t=40000
+Benchmarking: black_scholes_hybrid2 with p=180, t=40000
+Configuration: p_steps=180, t_steps=50000
+Benchmarking: black_scholes_base with p=180, t=50000
+Benchmarking: black_scholes_cpu_acc with p=180, t=50000
+Benchmarking: black_scholes_gpu with p=180, t=50000
+Benchmarking: black_scholes_hybrid1 with p=180, t=50000
+Benchmarking: black_scholes_hybrid2 with p=180, t=50000
+Configuration: p_steps=180, t_steps=60000
+Benchmarking: black_scholes_base with p=180, t=60000
+Benchmarking: black_scholes_cpu_acc with p=180, t=60000
+Benchmarking: black_scholes_gpu with p=180, t=60000
+Benchmarking: black_scholes_hybrid1 with p=180, t=60000
+Benchmarking: black_scholes_hybrid2 with p=180, t=60000
+Configuration: p_steps=180, t_steps=70000
+Benchmarking: black_scholes_base with p=180, t=70000
+Benchmarking: black_scholes_cpu_acc with p=180, t=70000
+Benchmarking: black_scholes_gpu with p=180, t=70000
+Benchmarking: black_scholes_hybrid1 with p=180, t=70000
+Benchmarking: black_scholes_hybrid2 with p=180, t=70000
+Configuration: p_steps=180, t_steps=80000
+Benchmarking: black_scholes_base with p=180, t=80000
+Benchmarking: black_scholes_cpu_acc with p=180, t=80000
+Benchmarking: black_scholes_gpu with p=180, t=80000
+Benchmarking: black_scholes_hybrid1 with p=180, t=80000
+Benchmarking: black_scholes_hybrid2 with p=180, t=80000
+Configuration: p_steps=180, t_steps=90000
+Benchmarking: black_scholes_base with p=180, t=90000
+Benchmarking: black_scholes_cpu_acc with p=180, t=90000
+Benchmarking: black_scholes_gpu with p=180, t=90000
+Benchmarking: black_scholes_hybrid1 with p=180, t=90000
+Benchmarking: black_scholes_hybrid2 with p=180, t=90000
+Configuration: p_steps=180, t_steps=100000
+Benchmarking: black_scholes_base with p=180, t=100000
+Benchmarking: black_scholes_cpu_acc with p=180, t=100000
+Benchmarking: black_scholes_gpu with p=180, t=100000
+Benchmarking: black_scholes_hybrid1 with p=180, t=100000
+Benchmarking: black_scholes_hybrid2 with p=180, t=100000
+Configuration: p_steps=200, t_steps=10000
+Benchmarking: black_scholes_base with p=200, t=10000
+Benchmarking: black_scholes_cpu_acc with p=200, t=10000
+Benchmarking: black_scholes_gpu with p=200, t=10000
+Benchmarking: black_scholes_hybrid1 with p=200, t=10000
+Benchmarking: black_scholes_hybrid2 with p=200, t=10000
+Configuration: p_steps=200, t_steps=20000
+Benchmarking: black_scholes_base with p=200, t=20000
+Benchmarking: black_scholes_cpu_acc with p=200, t=20000
+Benchmarking: black_scholes_gpu with p=200, t=20000
+Benchmarking: black_scholes_hybrid1 with p=200, t=20000
+Benchmarking: black_scholes_hybrid2 with p=200, t=20000
+Configuration: p_steps=200, t_steps=30000
+Benchmarking: black_scholes_base with p=200, t=30000
+Benchmarking: black_scholes_cpu_acc with p=200, t=30000
+Benchmarking: black_scholes_gpu with p=200, t=30000
+Benchmarking: black_scholes_hybrid1 with p=200, t=30000
+Benchmarking: black_scholes_hybrid2 with p=200, t=30000
+Configuration: p_steps=200, t_steps=40000
+Benchmarking: black_scholes_base with p=200, t=40000
+Benchmarking: black_scholes_cpu_acc with p=200, t=40000
+Benchmarking: black_scholes_gpu with p=200, t=40000
+Benchmarking: black_scholes_hybrid1 with p=200, t=40000
+Benchmarking: black_scholes_hybrid2 with p=200, t=40000
+Configuration: p_steps=200, t_steps=50000
+Benchmarking: black_scholes_base with p=200, t=50000
+Benchmarking: black_scholes_cpu_acc with p=200, t=50000
+Benchmarking: black_scholes_gpu with p=200, t=50000
+Benchmarking: black_scholes_hybrid1 with p=200, t=50000
+Benchmarking: black_scholes_hybrid2 with p=200, t=50000
+Configuration: p_steps=200, t_steps=60000
+Benchmarking: black_scholes_base with p=200, t=60000
+Benchmarking: black_scholes_cpu_acc with p=200, t=60000
+Benchmarking: black_scholes_gpu with p=200, t=60000
+Benchmarking: black_scholes_hybrid1 with p=200, t=60000
+Benchmarking: black_scholes_hybrid2 with p=200, t=60000
+Configuration: p_steps=200, t_steps=70000
+Benchmarking: black_scholes_base with p=200, t=70000
+Benchmarking: black_scholes_cpu_acc with p=200, t=70000
+Benchmarking: black_scholes_gpu with p=200, t=70000
+Benchmarking: black_scholes_hybrid1 with p=200, t=70000
+Benchmarking: black_scholes_hybrid2 with p=200, t=70000
+Configuration: p_steps=200, t_steps=80000
+Benchmarking: black_scholes_base with p=200, t=80000
+Benchmarking: black_scholes_cpu_acc with p=200, t=80000
+Benchmarking: black_scholes_gpu with p=200, t=80000
+Benchmarking: black_scholes_hybrid1 with p=200, t=80000
+Benchmarking: black_scholes_hybrid2 with p=200, t=80000
+Configuration: p_steps=200, t_steps=90000
+Benchmarking: black_scholes_base with p=200, t=90000
+Benchmarking: black_scholes_cpu_acc with p=200, t=90000
+Benchmarking: black_scholes_gpu with p=200, t=90000
+Benchmarking: black_scholes_hybrid1 with p=200, t=90000
+Benchmarking: black_scholes_hybrid2 with p=200, t=90000
+Configuration: p_steps=200, t_steps=100000
+Benchmarking: black_scholes_base with p=200, t=100000
+Benchmarking: black_scholes_cpu_acc with p=200, t=100000
+Benchmarking: black_scholes_gpu with p=200, t=100000
+Benchmarking: black_scholes_hybrid1 with p=200, t=100000
+Benchmarking: black_scholes_hybrid2 with p=200, t=100000

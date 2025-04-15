@@ -1,7 +1,1103 @@
-=====================
-bin/black_scholes_base average time: FAILED
+Starting Benchmarks...
+=======================
+Configuration: p_steps=20, t_steps=10000
+black_scholes_base failed for p=20 t=10000
 
-bin/black_scholes_cpu_acc average time: FAILED
+black_scholes_cpu_acc failed for p=20 t=10000
 
-bin/black_scholes_gpu average time: FAILED
+black_scholes_gpu failed for p=20 t=10000
 
+black_scholes_hybrid1 failed for p=20 t=10000
+
+black_scholes_hybrid2 failed for p=20 t=10000
+
+Configuration: p_steps=20, t_steps=20000
+black_scholes_base failed for p=20 t=20000
+
+black_scholes_cpu_acc failed for p=20 t=20000
+
+black_scholes_gpu failed for p=20 t=20000
+
+black_scholes_hybrid1 failed for p=20 t=20000
+
+black_scholes_hybrid2 failed for p=20 t=20000
+
+Configuration: p_steps=20, t_steps=30000
+black_scholes_base failed for p=20 t=30000
+
+black_scholes_cpu_acc failed for p=20 t=30000
+
+black_scholes_gpu failed for p=20 t=30000
+
+black_scholes_hybrid1 failed for p=20 t=30000
+
+black_scholes_hybrid2 failed for p=20 t=30000
+
+Configuration: p_steps=20, t_steps=40000
+black_scholes_base failed for p=20 t=40000
+
+black_scholes_cpu_acc failed for p=20 t=40000
+
+black_scholes_gpu failed for p=20 t=40000
+
+black_scholes_hybrid1 failed for p=20 t=40000
+
+black_scholes_hybrid2 failed for p=20 t=40000
+
+Configuration: p_steps=20, t_steps=50000
+black_scholes_base failed for p=20 t=50000
+
+black_scholes_cpu_acc failed for p=20 t=50000
+
+black_scholes_gpu failed for p=20 t=50000
+
+black_scholes_hybrid1 failed for p=20 t=50000
+
+black_scholes_hybrid2 failed for p=20 t=50000
+
+Configuration: p_steps=20, t_steps=60000
+black_scholes_base failed for p=20 t=60000
+
+black_scholes_cpu_acc failed for p=20 t=60000
+
+black_scholes_gpu failed for p=20 t=60000
+
+black_scholes_hybrid1 failed for p=20 t=60000
+
+black_scholes_hybrid2 failed for p=20 t=60000
+
+Configuration: p_steps=20, t_steps=70000
+black_scholes_base failed for p=20 t=70000
+
+black_scholes_cpu_acc failed for p=20 t=70000
+
+black_scholes_gpu failed for p=20 t=70000
+
+black_scholes_hybrid1 failed for p=20 t=70000
+
+black_scholes_hybrid2 failed for p=20 t=70000
+
+Configuration: p_steps=20, t_steps=80000
+black_scholes_base failed for p=20 t=80000
+
+black_scholes_cpu_acc failed for p=20 t=80000
+
+black_scholes_gpu failed for p=20 t=80000
+
+black_scholes_hybrid1 failed for p=20 t=80000
+
+black_scholes_hybrid2 failed for p=20 t=80000
+
+Configuration: p_steps=20, t_steps=90000
+black_scholes_base failed for p=20 t=90000
+
+black_scholes_cpu_acc failed for p=20 t=90000
+
+black_scholes_gpu failed for p=20 t=90000
+
+black_scholes_hybrid1 failed for p=20 t=90000
+
+black_scholes_hybrid2 failed for p=20 t=90000
+
+Configuration: p_steps=20, t_steps=100000
+black_scholes_base failed for p=20 t=100000
+
+black_scholes_cpu_acc failed for p=20 t=100000
+
+black_scholes_gpu failed for p=20 t=100000
+
+black_scholes_hybrid1 failed for p=20 t=100000
+
+black_scholes_hybrid2 failed for p=20 t=100000
+
+Configuration: p_steps=40, t_steps=10000
+black_scholes_base failed for p=40 t=10000
+
+black_scholes_cpu_acc failed for p=40 t=10000
+
+black_scholes_gpu failed for p=40 t=10000
+
+black_scholes_hybrid1 failed for p=40 t=10000
+
+black_scholes_hybrid2 failed for p=40 t=10000
+
+Configuration: p_steps=40, t_steps=20000
+black_scholes_base failed for p=40 t=20000
+
+black_scholes_cpu_acc failed for p=40 t=20000
+
+black_scholes_gpu failed for p=40 t=20000
+
+black_scholes_hybrid1 failed for p=40 t=20000
+
+black_scholes_hybrid2 failed for p=40 t=20000
+
+Configuration: p_steps=40, t_steps=30000
+black_scholes_base failed for p=40 t=30000
+
+black_scholes_cpu_acc failed for p=40 t=30000
+
+black_scholes_gpu failed for p=40 t=30000
+
+black_scholes_hybrid1 failed for p=40 t=30000
+
+black_scholes_hybrid2 failed for p=40 t=30000
+
+Configuration: p_steps=40, t_steps=40000
+black_scholes_base failed for p=40 t=40000
+
+black_scholes_cpu_acc failed for p=40 t=40000
+
+black_scholes_gpu failed for p=40 t=40000
+
+black_scholes_hybrid1 failed for p=40 t=40000
+
+black_scholes_hybrid2 failed for p=40 t=40000
+
+Configuration: p_steps=40, t_steps=50000
+black_scholes_base failed for p=40 t=50000
+
+black_scholes_cpu_acc failed for p=40 t=50000
+
+black_scholes_gpu failed for p=40 t=50000
+
+black_scholes_hybrid1 failed for p=40 t=50000
+
+black_scholes_hybrid2 failed for p=40 t=50000
+
+Configuration: p_steps=40, t_steps=60000
+black_scholes_base failed for p=40 t=60000
+
+black_scholes_cpu_acc failed for p=40 t=60000
+
+black_scholes_gpu failed for p=40 t=60000
+
+black_scholes_hybrid1 failed for p=40 t=60000
+
+black_scholes_hybrid2 failed for p=40 t=60000
+
+Configuration: p_steps=40, t_steps=70000
+black_scholes_base failed for p=40 t=70000
+
+black_scholes_cpu_acc failed for p=40 t=70000
+
+black_scholes_gpu failed for p=40 t=70000
+
+black_scholes_hybrid1 failed for p=40 t=70000
+
+black_scholes_hybrid2 failed for p=40 t=70000
+
+Configuration: p_steps=40, t_steps=80000
+black_scholes_base failed for p=40 t=80000
+
+black_scholes_cpu_acc failed for p=40 t=80000
+
+black_scholes_gpu failed for p=40 t=80000
+
+black_scholes_hybrid1 failed for p=40 t=80000
+
+black_scholes_hybrid2 failed for p=40 t=80000
+
+Configuration: p_steps=40, t_steps=90000
+black_scholes_base failed for p=40 t=90000
+
+black_scholes_cpu_acc failed for p=40 t=90000
+
+black_scholes_gpu failed for p=40 t=90000
+
+black_scholes_hybrid1 failed for p=40 t=90000
+
+black_scholes_hybrid2 failed for p=40 t=90000
+
+Configuration: p_steps=40, t_steps=100000
+black_scholes_base failed for p=40 t=100000
+
+black_scholes_cpu_acc failed for p=40 t=100000
+
+black_scholes_gpu failed for p=40 t=100000
+
+black_scholes_hybrid1 failed for p=40 t=100000
+
+black_scholes_hybrid2 failed for p=40 t=100000
+
+Configuration: p_steps=60, t_steps=10000
+black_scholes_base failed for p=60 t=10000
+
+black_scholes_cpu_acc failed for p=60 t=10000
+
+black_scholes_gpu failed for p=60 t=10000
+
+black_scholes_hybrid1 failed for p=60 t=10000
+
+black_scholes_hybrid2 failed for p=60 t=10000
+
+Configuration: p_steps=60, t_steps=20000
+black_scholes_base failed for p=60 t=20000
+
+black_scholes_cpu_acc failed for p=60 t=20000
+
+black_scholes_gpu failed for p=60 t=20000
+
+black_scholes_hybrid1 failed for p=60 t=20000
+
+black_scholes_hybrid2 failed for p=60 t=20000
+
+Configuration: p_steps=60, t_steps=30000
+black_scholes_base failed for p=60 t=30000
+
+black_scholes_cpu_acc failed for p=60 t=30000
+
+black_scholes_gpu failed for p=60 t=30000
+
+black_scholes_hybrid1 failed for p=60 t=30000
+
+black_scholes_hybrid2 failed for p=60 t=30000
+
+Configuration: p_steps=60, t_steps=40000
+black_scholes_base failed for p=60 t=40000
+
+black_scholes_cpu_acc failed for p=60 t=40000
+
+black_scholes_gpu failed for p=60 t=40000
+
+black_scholes_hybrid1 failed for p=60 t=40000
+
+black_scholes_hybrid2 failed for p=60 t=40000
+
+Configuration: p_steps=60, t_steps=50000
+black_scholes_base failed for p=60 t=50000
+
+black_scholes_cpu_acc failed for p=60 t=50000
+
+black_scholes_gpu failed for p=60 t=50000
+
+black_scholes_hybrid1 failed for p=60 t=50000
+
+black_scholes_hybrid2 failed for p=60 t=50000
+
+Configuration: p_steps=60, t_steps=60000
+black_scholes_base failed for p=60 t=60000
+
+black_scholes_cpu_acc failed for p=60 t=60000
+
+black_scholes_gpu failed for p=60 t=60000
+
+black_scholes_hybrid1 failed for p=60 t=60000
+
+black_scholes_hybrid2 failed for p=60 t=60000
+
+Configuration: p_steps=60, t_steps=70000
+black_scholes_base failed for p=60 t=70000
+
+black_scholes_cpu_acc failed for p=60 t=70000
+
+black_scholes_gpu failed for p=60 t=70000
+
+black_scholes_hybrid1 failed for p=60 t=70000
+
+black_scholes_hybrid2 failed for p=60 t=70000
+
+Configuration: p_steps=60, t_steps=80000
+black_scholes_base failed for p=60 t=80000
+
+black_scholes_cpu_acc failed for p=60 t=80000
+
+black_scholes_gpu failed for p=60 t=80000
+
+black_scholes_hybrid1 failed for p=60 t=80000
+
+black_scholes_hybrid2 failed for p=60 t=80000
+
+Configuration: p_steps=60, t_steps=90000
+black_scholes_base failed for p=60 t=90000
+
+black_scholes_cpu_acc failed for p=60 t=90000
+
+black_scholes_gpu failed for p=60 t=90000
+
+black_scholes_hybrid1 failed for p=60 t=90000
+
+black_scholes_hybrid2 failed for p=60 t=90000
+
+Configuration: p_steps=60, t_steps=100000
+black_scholes_base failed for p=60 t=100000
+
+black_scholes_cpu_acc failed for p=60 t=100000
+
+black_scholes_gpu failed for p=60 t=100000
+
+black_scholes_hybrid1 failed for p=60 t=100000
+
+black_scholes_hybrid2 failed for p=60 t=100000
+
+Configuration: p_steps=80, t_steps=10000
+black_scholes_base failed for p=80 t=10000
+
+black_scholes_cpu_acc failed for p=80 t=10000
+
+black_scholes_gpu failed for p=80 t=10000
+
+black_scholes_hybrid1 failed for p=80 t=10000
+
+black_scholes_hybrid2 failed for p=80 t=10000
+
+Configuration: p_steps=80, t_steps=20000
+black_scholes_base failed for p=80 t=20000
+
+black_scholes_cpu_acc failed for p=80 t=20000
+
+black_scholes_gpu failed for p=80 t=20000
+
+black_scholes_hybrid1 failed for p=80 t=20000
+
+black_scholes_hybrid2 failed for p=80 t=20000
+
+Configuration: p_steps=80, t_steps=30000
+black_scholes_base failed for p=80 t=30000
+
+black_scholes_cpu_acc failed for p=80 t=30000
+
+black_scholes_gpu failed for p=80 t=30000
+
+black_scholes_hybrid1 failed for p=80 t=30000
+
+black_scholes_hybrid2 failed for p=80 t=30000
+
+Configuration: p_steps=80, t_steps=40000
+black_scholes_base failed for p=80 t=40000
+
+black_scholes_cpu_acc failed for p=80 t=40000
+
+black_scholes_gpu failed for p=80 t=40000
+
+black_scholes_hybrid1 failed for p=80 t=40000
+
+black_scholes_hybrid2 failed for p=80 t=40000
+
+Configuration: p_steps=80, t_steps=50000
+black_scholes_base failed for p=80 t=50000
+
+black_scholes_cpu_acc failed for p=80 t=50000
+
+black_scholes_gpu failed for p=80 t=50000
+
+black_scholes_hybrid1 failed for p=80 t=50000
+
+black_scholes_hybrid2 failed for p=80 t=50000
+
+Configuration: p_steps=80, t_steps=60000
+black_scholes_base failed for p=80 t=60000
+
+black_scholes_cpu_acc failed for p=80 t=60000
+
+black_scholes_gpu failed for p=80 t=60000
+
+black_scholes_hybrid1 failed for p=80 t=60000
+
+black_scholes_hybrid2 failed for p=80 t=60000
+
+Configuration: p_steps=80, t_steps=70000
+black_scholes_base failed for p=80 t=70000
+
+black_scholes_cpu_acc failed for p=80 t=70000
+
+black_scholes_gpu failed for p=80 t=70000
+
+black_scholes_hybrid1 failed for p=80 t=70000
+
+black_scholes_hybrid2 failed for p=80 t=70000
+
+Configuration: p_steps=80, t_steps=80000
+black_scholes_base failed for p=80 t=80000
+
+black_scholes_cpu_acc failed for p=80 t=80000
+
+black_scholes_gpu failed for p=80 t=80000
+
+black_scholes_hybrid1 failed for p=80 t=80000
+
+black_scholes_hybrid2 failed for p=80 t=80000
+
+Configuration: p_steps=80, t_steps=90000
+black_scholes_base failed for p=80 t=90000
+
+black_scholes_cpu_acc failed for p=80 t=90000
+
+black_scholes_gpu failed for p=80 t=90000
+
+black_scholes_hybrid1 failed for p=80 t=90000
+
+black_scholes_hybrid2 failed for p=80 t=90000
+
+Configuration: p_steps=80, t_steps=100000
+black_scholes_base failed for p=80 t=100000
+
+black_scholes_cpu_acc failed for p=80 t=100000
+
+black_scholes_gpu failed for p=80 t=100000
+
+black_scholes_hybrid1 failed for p=80 t=100000
+
+black_scholes_hybrid2 failed for p=80 t=100000
+
+Configuration: p_steps=100, t_steps=10000
+black_scholes_base failed for p=100 t=10000
+
+black_scholes_cpu_acc failed for p=100 t=10000
+
+black_scholes_gpu failed for p=100 t=10000
+
+black_scholes_hybrid1 failed for p=100 t=10000
+
+black_scholes_hybrid2 failed for p=100 t=10000
+
+Configuration: p_steps=100, t_steps=20000
+black_scholes_base failed for p=100 t=20000
+
+black_scholes_cpu_acc failed for p=100 t=20000
+
+black_scholes_gpu failed for p=100 t=20000
+
+black_scholes_hybrid1 failed for p=100 t=20000
+
+black_scholes_hybrid2 failed for p=100 t=20000
+
+Configuration: p_steps=100, t_steps=30000
+black_scholes_base failed for p=100 t=30000
+
+black_scholes_cpu_acc failed for p=100 t=30000
+
+black_scholes_gpu failed for p=100 t=30000
+
+black_scholes_hybrid1 failed for p=100 t=30000
+
+black_scholes_hybrid2 failed for p=100 t=30000
+
+Configuration: p_steps=100, t_steps=40000
+black_scholes_base failed for p=100 t=40000
+
+black_scholes_cpu_acc failed for p=100 t=40000
+
+black_scholes_gpu failed for p=100 t=40000
+
+black_scholes_hybrid1 failed for p=100 t=40000
+
+black_scholes_hybrid2 failed for p=100 t=40000
+
+Configuration: p_steps=100, t_steps=50000
+black_scholes_base failed for p=100 t=50000
+
+black_scholes_cpu_acc failed for p=100 t=50000
+
+black_scholes_gpu failed for p=100 t=50000
+
+black_scholes_hybrid1 failed for p=100 t=50000
+
+black_scholes_hybrid2 failed for p=100 t=50000
+
+Configuration: p_steps=100, t_steps=60000
+black_scholes_base failed for p=100 t=60000
+
+black_scholes_cpu_acc failed for p=100 t=60000
+
+black_scholes_gpu failed for p=100 t=60000
+
+black_scholes_hybrid1 failed for p=100 t=60000
+
+black_scholes_hybrid2 failed for p=100 t=60000
+
+Configuration: p_steps=100, t_steps=70000
+black_scholes_base failed for p=100 t=70000
+
+black_scholes_cpu_acc failed for p=100 t=70000
+
+black_scholes_gpu failed for p=100 t=70000
+
+black_scholes_hybrid1 failed for p=100 t=70000
+
+black_scholes_hybrid2 failed for p=100 t=70000
+
+Configuration: p_steps=100, t_steps=80000
+black_scholes_base failed for p=100 t=80000
+
+black_scholes_cpu_acc failed for p=100 t=80000
+
+black_scholes_gpu failed for p=100 t=80000
+
+black_scholes_hybrid1 failed for p=100 t=80000
+
+black_scholes_hybrid2 failed for p=100 t=80000
+
+Configuration: p_steps=100, t_steps=90000
+black_scholes_base failed for p=100 t=90000
+
+black_scholes_cpu_acc failed for p=100 t=90000
+
+black_scholes_gpu failed for p=100 t=90000
+
+black_scholes_hybrid1 failed for p=100 t=90000
+
+black_scholes_hybrid2 failed for p=100 t=90000
+
+Configuration: p_steps=100, t_steps=100000
+black_scholes_base failed for p=100 t=100000
+
+black_scholes_cpu_acc failed for p=100 t=100000
+
+black_scholes_gpu failed for p=100 t=100000
+
+black_scholes_hybrid1 failed for p=100 t=100000
+
+black_scholes_hybrid2 failed for p=100 t=100000
+
+Configuration: p_steps=120, t_steps=10000
+black_scholes_base failed for p=120 t=10000
+
+black_scholes_cpu_acc failed for p=120 t=10000
+
+black_scholes_gpu failed for p=120 t=10000
+
+black_scholes_hybrid1 failed for p=120 t=10000
+
+black_scholes_hybrid2 failed for p=120 t=10000
+
+Configuration: p_steps=120, t_steps=20000
+black_scholes_base failed for p=120 t=20000
+
+black_scholes_cpu_acc failed for p=120 t=20000
+
+black_scholes_gpu failed for p=120 t=20000
+
+black_scholes_hybrid1 failed for p=120 t=20000
+
+black_scholes_hybrid2 failed for p=120 t=20000
+
+Configuration: p_steps=120, t_steps=30000
+black_scholes_base failed for p=120 t=30000
+
+black_scholes_cpu_acc failed for p=120 t=30000
+
+black_scholes_gpu failed for p=120 t=30000
+
+black_scholes_hybrid1 failed for p=120 t=30000
+
+black_scholes_hybrid2 failed for p=120 t=30000
+
+Configuration: p_steps=120, t_steps=40000
+black_scholes_base failed for p=120 t=40000
+
+black_scholes_cpu_acc failed for p=120 t=40000
+
+black_scholes_gpu failed for p=120 t=40000
+
+black_scholes_hybrid1 failed for p=120 t=40000
+
+black_scholes_hybrid2 failed for p=120 t=40000
+
+Configuration: p_steps=120, t_steps=50000
+black_scholes_base failed for p=120 t=50000
+
+black_scholes_cpu_acc failed for p=120 t=50000
+
+black_scholes_gpu failed for p=120 t=50000
+
+black_scholes_hybrid1 failed for p=120 t=50000
+
+black_scholes_hybrid2 failed for p=120 t=50000
+
+Configuration: p_steps=120, t_steps=60000
+black_scholes_base failed for p=120 t=60000
+
+black_scholes_cpu_acc failed for p=120 t=60000
+
+black_scholes_gpu failed for p=120 t=60000
+
+black_scholes_hybrid1 failed for p=120 t=60000
+
+black_scholes_hybrid2 failed for p=120 t=60000
+
+Configuration: p_steps=120, t_steps=70000
+black_scholes_base failed for p=120 t=70000
+
+black_scholes_cpu_acc failed for p=120 t=70000
+
+black_scholes_gpu failed for p=120 t=70000
+
+black_scholes_hybrid1 failed for p=120 t=70000
+
+black_scholes_hybrid2 failed for p=120 t=70000
+
+Configuration: p_steps=120, t_steps=80000
+black_scholes_base failed for p=120 t=80000
+
+black_scholes_cpu_acc failed for p=120 t=80000
+
+black_scholes_gpu failed for p=120 t=80000
+
+black_scholes_hybrid1 failed for p=120 t=80000
+
+black_scholes_hybrid2 failed for p=120 t=80000
+
+Configuration: p_steps=120, t_steps=90000
+black_scholes_base failed for p=120 t=90000
+
+black_scholes_cpu_acc failed for p=120 t=90000
+
+black_scholes_gpu failed for p=120 t=90000
+
+black_scholes_hybrid1 failed for p=120 t=90000
+
+black_scholes_hybrid2 failed for p=120 t=90000
+
+Configuration: p_steps=120, t_steps=100000
+black_scholes_base failed for p=120 t=100000
+
+black_scholes_cpu_acc failed for p=120 t=100000
+
+black_scholes_gpu failed for p=120 t=100000
+
+black_scholes_hybrid1 failed for p=120 t=100000
+
+black_scholes_hybrid2 failed for p=120 t=100000
+
+Configuration: p_steps=140, t_steps=10000
+black_scholes_base failed for p=140 t=10000
+
+black_scholes_cpu_acc failed for p=140 t=10000
+
+black_scholes_gpu failed for p=140 t=10000
+
+black_scholes_hybrid1 failed for p=140 t=10000
+
+black_scholes_hybrid2 failed for p=140 t=10000
+
+Configuration: p_steps=140, t_steps=20000
+black_scholes_base failed for p=140 t=20000
+
+black_scholes_cpu_acc failed for p=140 t=20000
+
+black_scholes_gpu failed for p=140 t=20000
+
+black_scholes_hybrid1 failed for p=140 t=20000
+
+black_scholes_hybrid2 failed for p=140 t=20000
+
+Configuration: p_steps=140, t_steps=30000
+black_scholes_base failed for p=140 t=30000
+
+black_scholes_cpu_acc failed for p=140 t=30000
+
+black_scholes_gpu failed for p=140 t=30000
+
+black_scholes_hybrid1 failed for p=140 t=30000
+
+black_scholes_hybrid2 failed for p=140 t=30000
+
+Configuration: p_steps=140, t_steps=40000
+black_scholes_base failed for p=140 t=40000
+
+black_scholes_cpu_acc failed for p=140 t=40000
+
+black_scholes_gpu failed for p=140 t=40000
+
+black_scholes_hybrid1 failed for p=140 t=40000
+
+black_scholes_hybrid2 failed for p=140 t=40000
+
+Configuration: p_steps=140, t_steps=50000
+black_scholes_base failed for p=140 t=50000
+
+black_scholes_cpu_acc failed for p=140 t=50000
+
+black_scholes_gpu failed for p=140 t=50000
+
+black_scholes_hybrid1 failed for p=140 t=50000
+
+black_scholes_hybrid2 failed for p=140 t=50000
+
+Configuration: p_steps=140, t_steps=60000
+black_scholes_base failed for p=140 t=60000
+
+black_scholes_cpu_acc failed for p=140 t=60000
+
+black_scholes_gpu failed for p=140 t=60000
+
+black_scholes_hybrid1 failed for p=140 t=60000
+
+black_scholes_hybrid2 failed for p=140 t=60000
+
+Configuration: p_steps=140, t_steps=70000
+black_scholes_base failed for p=140 t=70000
+
+black_scholes_cpu_acc failed for p=140 t=70000
+
+black_scholes_gpu failed for p=140 t=70000
+
+black_scholes_hybrid1 failed for p=140 t=70000
+
+black_scholes_hybrid2 failed for p=140 t=70000
+
+Configuration: p_steps=140, t_steps=80000
+black_scholes_base failed for p=140 t=80000
+
+black_scholes_cpu_acc failed for p=140 t=80000
+
+black_scholes_gpu failed for p=140 t=80000
+
+black_scholes_hybrid1 failed for p=140 t=80000
+
+black_scholes_hybrid2 failed for p=140 t=80000
+
+Configuration: p_steps=140, t_steps=90000
+black_scholes_base failed for p=140 t=90000
+
+black_scholes_cpu_acc failed for p=140 t=90000
+
+black_scholes_gpu failed for p=140 t=90000
+
+black_scholes_hybrid1 failed for p=140 t=90000
+
+black_scholes_hybrid2 failed for p=140 t=90000
+
+Configuration: p_steps=140, t_steps=100000
+black_scholes_base failed for p=140 t=100000
+
+black_scholes_cpu_acc failed for p=140 t=100000
+
+black_scholes_gpu failed for p=140 t=100000
+
+black_scholes_hybrid1 failed for p=140 t=100000
+
+black_scholes_hybrid2 failed for p=140 t=100000
+
+Configuration: p_steps=160, t_steps=10000
+black_scholes_base failed for p=160 t=10000
+
+black_scholes_cpu_acc failed for p=160 t=10000
+
+black_scholes_gpu failed for p=160 t=10000
+
+black_scholes_hybrid1 failed for p=160 t=10000
+
+black_scholes_hybrid2 failed for p=160 t=10000
+
+Configuration: p_steps=160, t_steps=20000
+black_scholes_base failed for p=160 t=20000
+
+black_scholes_cpu_acc failed for p=160 t=20000
+
+black_scholes_gpu failed for p=160 t=20000
+
+black_scholes_hybrid1 failed for p=160 t=20000
+
+black_scholes_hybrid2 failed for p=160 t=20000
+
+Configuration: p_steps=160, t_steps=30000
+black_scholes_base failed for p=160 t=30000
+
+black_scholes_cpu_acc failed for p=160 t=30000
+
+black_scholes_gpu failed for p=160 t=30000
+
+black_scholes_hybrid1 failed for p=160 t=30000
+
+black_scholes_hybrid2 failed for p=160 t=30000
+
+Configuration: p_steps=160, t_steps=40000
+black_scholes_base failed for p=160 t=40000
+
+black_scholes_cpu_acc failed for p=160 t=40000
+
+black_scholes_gpu failed for p=160 t=40000
+
+black_scholes_hybrid1 failed for p=160 t=40000
+
+black_scholes_hybrid2 failed for p=160 t=40000
+
+Configuration: p_steps=160, t_steps=50000
+black_scholes_base failed for p=160 t=50000
+
+black_scholes_cpu_acc failed for p=160 t=50000
+
+black_scholes_gpu failed for p=160 t=50000
+
+black_scholes_hybrid1 failed for p=160 t=50000
+
+black_scholes_hybrid2 failed for p=160 t=50000
+
+Configuration: p_steps=160, t_steps=60000
+black_scholes_base failed for p=160 t=60000
+
+black_scholes_cpu_acc failed for p=160 t=60000
+
+black_scholes_gpu failed for p=160 t=60000
+
+black_scholes_hybrid1 failed for p=160 t=60000
+
+black_scholes_hybrid2 failed for p=160 t=60000
+
+Configuration: p_steps=160, t_steps=70000
+black_scholes_base failed for p=160 t=70000
+
+black_scholes_cpu_acc failed for p=160 t=70000
+
+black_scholes_gpu failed for p=160 t=70000
+
+black_scholes_hybrid1 failed for p=160 t=70000
+
+black_scholes_hybrid2 failed for p=160 t=70000
+
+Configuration: p_steps=160, t_steps=80000
+black_scholes_base failed for p=160 t=80000
+
+black_scholes_cpu_acc failed for p=160 t=80000
+
+black_scholes_gpu failed for p=160 t=80000
+
+black_scholes_hybrid1 failed for p=160 t=80000
+
+black_scholes_hybrid2 failed for p=160 t=80000
+
+Configuration: p_steps=160, t_steps=90000
+black_scholes_base failed for p=160 t=90000
+
+black_scholes_cpu_acc failed for p=160 t=90000
+
+black_scholes_gpu failed for p=160 t=90000
+
+black_scholes_hybrid1 failed for p=160 t=90000
+
+black_scholes_hybrid2 failed for p=160 t=90000
+
+Configuration: p_steps=160, t_steps=100000
+black_scholes_base failed for p=160 t=100000
+
+black_scholes_cpu_acc failed for p=160 t=100000
+
+black_scholes_gpu failed for p=160 t=100000
+
+black_scholes_hybrid1 failed for p=160 t=100000
+
+black_scholes_hybrid2 failed for p=160 t=100000
+
+Configuration: p_steps=180, t_steps=10000
+black_scholes_base failed for p=180 t=10000
+
+black_scholes_cpu_acc failed for p=180 t=10000
+
+black_scholes_gpu failed for p=180 t=10000
+
+black_scholes_hybrid1 failed for p=180 t=10000
+
+black_scholes_hybrid2 failed for p=180 t=10000
+
+Configuration: p_steps=180, t_steps=20000
+black_scholes_base failed for p=180 t=20000
+
+black_scholes_cpu_acc failed for p=180 t=20000
+
+black_scholes_gpu failed for p=180 t=20000
+
+black_scholes_hybrid1 failed for p=180 t=20000
+
+black_scholes_hybrid2 failed for p=180 t=20000
+
+Configuration: p_steps=180, t_steps=30000
+black_scholes_base failed for p=180 t=30000
+
+black_scholes_cpu_acc failed for p=180 t=30000
+
+black_scholes_gpu failed for p=180 t=30000
+
+black_scholes_hybrid1 failed for p=180 t=30000
+
+black_scholes_hybrid2 failed for p=180 t=30000
+
+Configuration: p_steps=180, t_steps=40000
+black_scholes_base failed for p=180 t=40000
+
+black_scholes_cpu_acc failed for p=180 t=40000
+
+black_scholes_gpu failed for p=180 t=40000
+
+black_scholes_hybrid1 failed for p=180 t=40000
+
+black_scholes_hybrid2 failed for p=180 t=40000
+
+Configuration: p_steps=180, t_steps=50000
+black_scholes_base failed for p=180 t=50000
+
+black_scholes_cpu_acc failed for p=180 t=50000
+
+black_scholes_gpu failed for p=180 t=50000
+
+black_scholes_hybrid1 failed for p=180 t=50000
+
+black_scholes_hybrid2 failed for p=180 t=50000
+
+Configuration: p_steps=180, t_steps=60000
+black_scholes_base failed for p=180 t=60000
+
+black_scholes_cpu_acc failed for p=180 t=60000
+
+black_scholes_gpu failed for p=180 t=60000
+
+black_scholes_hybrid1 failed for p=180 t=60000
+
+black_scholes_hybrid2 failed for p=180 t=60000
+
+Configuration: p_steps=180, t_steps=70000
+black_scholes_base failed for p=180 t=70000
+
+black_scholes_cpu_acc failed for p=180 t=70000
+
+black_scholes_gpu failed for p=180 t=70000
+
+black_scholes_hybrid1 failed for p=180 t=70000
+
+black_scholes_hybrid2 failed for p=180 t=70000
+
+Configuration: p_steps=180, t_steps=80000
+black_scholes_base failed for p=180 t=80000
+
+black_scholes_cpu_acc failed for p=180 t=80000
+
+black_scholes_gpu failed for p=180 t=80000
+
+black_scholes_hybrid1 failed for p=180 t=80000
+
+black_scholes_hybrid2 failed for p=180 t=80000
+
+Configuration: p_steps=180, t_steps=90000
+black_scholes_base failed for p=180 t=90000
+
+black_scholes_cpu_acc failed for p=180 t=90000
+
+black_scholes_gpu failed for p=180 t=90000
+
+black_scholes_hybrid1 failed for p=180 t=90000
+
+black_scholes_hybrid2 failed for p=180 t=90000
+
+Configuration: p_steps=180, t_steps=100000
+black_scholes_base failed for p=180 t=100000
+
+black_scholes_cpu_acc failed for p=180 t=100000
+
+black_scholes_gpu failed for p=180 t=100000
+
+black_scholes_hybrid1 failed for p=180 t=100000
+
+black_scholes_hybrid2 failed for p=180 t=100000
+
+Configuration: p_steps=200, t_steps=10000
+black_scholes_base failed for p=200 t=10000
+
+black_scholes_cpu_acc failed for p=200 t=10000
+
+black_scholes_gpu failed for p=200 t=10000
+
+black_scholes_hybrid1 failed for p=200 t=10000
+
+black_scholes_hybrid2 failed for p=200 t=10000
+
+Configuration: p_steps=200, t_steps=20000
+black_scholes_base failed for p=200 t=20000
+
+black_scholes_cpu_acc failed for p=200 t=20000
+
+black_scholes_gpu failed for p=200 t=20000
+
+black_scholes_hybrid1 failed for p=200 t=20000
+
+black_scholes_hybrid2 failed for p=200 t=20000
+
+Configuration: p_steps=200, t_steps=30000
+black_scholes_base failed for p=200 t=30000
+
+black_scholes_cpu_acc failed for p=200 t=30000
+
+black_scholes_gpu failed for p=200 t=30000
+
+black_scholes_hybrid1 failed for p=200 t=30000
+
+black_scholes_hybrid2 failed for p=200 t=30000
+
+Configuration: p_steps=200, t_steps=40000
+black_scholes_base failed for p=200 t=40000
+
+black_scholes_cpu_acc failed for p=200 t=40000
+
+black_scholes_gpu failed for p=200 t=40000
+
+black_scholes_hybrid1 failed for p=200 t=40000
+
+black_scholes_hybrid2 failed for p=200 t=40000
+
+Configuration: p_steps=200, t_steps=50000
+black_scholes_base failed for p=200 t=50000
+
+black_scholes_cpu_acc failed for p=200 t=50000
+
+black_scholes_gpu failed for p=200 t=50000
+
+black_scholes_hybrid1 failed for p=200 t=50000
+
+black_scholes_hybrid2 failed for p=200 t=50000
+
+Configuration: p_steps=200, t_steps=60000
+black_scholes_base failed for p=200 t=60000
+
+black_scholes_cpu_acc failed for p=200 t=60000
+
+black_scholes_gpu failed for p=200 t=60000
+
+black_scholes_hybrid1 failed for p=200 t=60000
+
+black_scholes_hybrid2 failed for p=200 t=60000
+
+Configuration: p_steps=200, t_steps=70000
+black_scholes_base failed for p=200 t=70000
+
+black_scholes_cpu_acc failed for p=200 t=70000
+
+black_scholes_gpu failed for p=200 t=70000
+
+black_scholes_hybrid1 failed for p=200 t=70000
+
+black_scholes_hybrid2 failed for p=200 t=70000
+
+Configuration: p_steps=200, t_steps=80000
+black_scholes_base failed for p=200 t=80000
+
+black_scholes_cpu_acc failed for p=200 t=80000
+
+black_scholes_gpu failed for p=200 t=80000
+
+black_scholes_hybrid1 failed for p=200 t=80000
+
+black_scholes_hybrid2 failed for p=200 t=80000
+
+Configuration: p_steps=200, t_steps=90000
+black_scholes_base failed for p=200 t=90000
+
+black_scholes_cpu_acc failed for p=200 t=90000
+
+black_scholes_gpu failed for p=200 t=90000
+
+black_scholes_hybrid1 failed for p=200 t=90000
+
+black_scholes_hybrid2 failed for p=200 t=90000
+
+Configuration: p_steps=200, t_steps=100000
+black_scholes_base failed for p=200 t=100000
+
+black_scholes_cpu_acc failed for p=200 t=100000
+
+black_scholes_gpu failed for p=200 t=100000
+
+black_scholes_hybrid1 failed for p=200 t=100000
+
+black_scholes_hybrid2 failed for p=200 t=100000
+
+All benchmarks complete.

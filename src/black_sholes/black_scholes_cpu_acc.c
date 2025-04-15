@@ -31,7 +31,7 @@ typedef struct
 } fdm_struct;
 
 
-int main() 
+int main(int argc, char *argv[]) 
 {
     double start, end, total;
     int count = 0;
@@ -44,6 +44,16 @@ int main()
     // FDM grid configuration
     int p_steps = 200;
     int t_steps = 100000;
+    if (argc >= 2) 
+    {
+        p_steps = atoi(argv[1]);
+    }
+
+    if (argc >= 3) 
+    {
+        t_steps = atoi(argv[2]);
+    }
+
     fdm_struct *grid = (fdm_struct*) malloc(sizeof(fdm_struct) * count);
     for (int i = 0; i < count; i++) 
     {
@@ -154,6 +164,7 @@ int main()
         printf("%-6d | %-10.4f | %-10.4f | %-10.4f | %-10.4f\n",
                i, call_prices[i], options[i].c_mid, put_prices[i], options[i].p_mid);
     }
+    printf("\nPSTEPS = %i, TSTEPS = %i\n", p_steps, t_steps);
     printf("\nTIME TAKEN = %.5f ms\n", total);
 
     for (int i = 0; i < count; i++) 
