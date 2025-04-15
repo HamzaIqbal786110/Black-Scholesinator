@@ -19,6 +19,22 @@ int main(int argc, char *argv[])
     int count = 0;
     option_spread *options = read_csv("Data/nvda_data_filtered.csv", &count);
 
+
+    // Print entries read from file
+    for (int i = 0; i < count; i++) {
+    printf("Entry %d:\n"
+           "  Underlying: %.2f, Strike: %.2f, DTE: %.2f\n"
+           "  Call - IV: %.6f, Mid: %.6f\n"
+           "  Put  - IV: %.6f, Mid: %.6f\n"
+           "  Risk-Free Rate: %.6f\n\n",
+           i,
+           options[i].underlying, options[i].strike, options[i].dte,
+           options[i].c_iv, options[i].c_mid,
+           options[i].p_iv, options[i].p_mid,
+           options[i].rfr);
+}
+
+
     // Allocate memory for model price outputs
     double *call_prices = malloc(sizeof(double) * count);
     double *put_prices  = malloc(sizeof(double) * count);
